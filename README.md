@@ -40,7 +40,6 @@ Os wireframes de média fidelidade cobrem as quatro páginas em versão **deskto
 
 📄 Arquivo navegável: [`docs/wireframes/wireframes.html`](docs/wireframes/wireframes.html) — abra no navegador.
 
-<!-- Substituir pelas capturas de tela dos wireframes -->
 | Sobre Mim | Projetos |
 | --- | --- |
 | ![Wireframe Sobre Mim](docs/wireframes/01-sobre.png) | ![Wireframe Projetos](docs/wireframes/02-projetos.png) |
@@ -148,8 +147,8 @@ O conteúdo fica **separado da apresentação**: os arquivos em `src/data/` conc
 
 ```bash
 # 1. Clonar o repositório
-git clone https://github.com/SEU-USUARIO/portfolio.git
-cd portfolio
+git clone https://github.com/viniciusoramos/Portifolio_Pessoal.git
+cd Portifolio_Pessoal
 
 # 2. Instalar as dependências
 npm install
@@ -201,4 +200,7 @@ Tema escuro minimalista, com foco em legibilidade e destaque para o conteúdo.
 
 ## Autor
 
-**[Seu Nome]** — Engenharia de Software, PUC Minas
+**Vinícius Oliveira Ramos** — Engenharia de Software, 6º período, PUC Minas — Belo Horizonte, MG
+
+- Repositório: [github.com/viniciusoramos/Portifolio_Pessoal](https://github.com/viniciusoramos/Portifolio_Pessoal)
+- E-mail: [vinicius.ramos@pucminas.edu.br](mailto:vinicius.ramos@pucminas.edu.br)
