@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wireframes — Portfólio Profissional (Lab01S01)</title>
+<style>
+  :root{
+    --ink:#1c1e24; --line:#c6cad3; --line2:#9aa0ad; --fill:#eceef2;
+    --fill2:#dfe2e8; --paper:#fff; --page:#f5f6f8; --note:#6b7280; --accent:#7C5CFF;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--page);color:var(--ink);
+    font:14px/1.5 "Inter",system-ui,-apple-system,"Segoe UI",sans-serif;padding:40px 24px 80px}
+  .wrap{max-width:1180px;margin:0 auto}
+  h1{font-size:28px;margin:0 0 6px}
+  .sub{color:var(--note);margin:0 0 8px}
+  .legend{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0 40px;padding:14px 16px;
+    background:var(--paper);border:1px solid var(--line);border-radius:8px;font-size:12px;color:var(--note)}
+  .legend b{color:var(--ink)}
+  h2{font-size:18px;margin:48px 0 4px;padding-top:24px;border-top:2px solid var(--line)}
+  .h2sub{color:var(--note);font-size:13px;margin:0 0 18px}
+  .row{display:flex;gap:28px;align-items:flex-start;flex-wrap:wrap}
+  .frame{background:var(--paper);border:2px solid var(--line2);border-radius:6px;overflow:hidden}
+  .desktop{width:720px;flex:1 1 620px;min-width:520px}
+  .mobile{width:280px;flex:0 0 280px}
+  .caption{font-size:11px;color:var(--note);text-transform:uppercase;letter-spacing:.08em;margin:0 0 8px;font-weight:600}
+  .bar{display:flex;align-items:center;justify-content:space-between;padding:0 16px;height:52px;
+    border-bottom:1.5px solid var(--line2);background:var(--fill)}
+  .mobile .bar{height:44px;padding:0 12px}
+  .logo{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700}
+  .sq{width:24px;height:24px;border-radius:5px;background:var(--line2)}
+  .nav{display:flex;gap:14px;font-size:11px;color:var(--note);align-items:center}
+  .nav .on{color:var(--ink);font-weight:700;border-bottom:2px solid var(--accent);padding-bottom:2px}
+  .pill{border:1.5px solid var(--line2);border-radius:5px;padding:2px 7px;font-size:10px;font-family:ui-monospace,monospace}
+  .body{padding:22px 20px}
+  .mobile .body{padding:16px 14px}
+  .t{background:var(--fill2);border-radius:3px;height:10px}
+  .t.h1{height:26px;width:62%;background:var(--line2)}
+  .t.h2{height:18px;width:40%;background:var(--line2)}
+  .t.lbl{height:9px;width:28%;background:var(--line2)}
+  .t.w90{width:90%}.t.w80{width:80%}.t.w70{width:70%}.t.w60{width:60%}.t.w45{width:45%}.t.w35{width:35%}
+  .stack>*+*{margin-top:9px}
+  .gap{height:22px}.gap-s{height:12px}
+  .btn{display:inline-block;border-radius:6px;padding:9px 18px;font-size:11px;font-weight:700;
+    background:var(--line2);color:#fff}
+  .btn.ghost{background:transparent;border:1.5px solid var(--line2);color:var(--note)}
+  .box{border:1.5px solid var(--line);border-radius:6px;background:var(--fill)}
+  .img{border:1.5px dashed var(--line2);border-radius:6px;background:
+    repeating-linear-gradient(45deg,var(--fill) 0 8px,var(--fill2) 8px 16px);
+    display:grid;place-items:center;font-size:10px;color:var(--note);font-family:ui-monospace,monospace}
+  .tags{display:flex;gap:6px;flex-wrap:wrap}
+  .tag{border:1.5px solid var(--line);border-radius:4px;background:var(--fill);
+    padding:3px 8px;font-size:9px;font-family:ui-monospace,monospace;color:var(--note)}
+  .grid2{display:grid;grid-template-columns:1.4fr 1fr;gap:26px}
+  .grid2b{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .field{border:1.5px solid var(--line);border-radius:6px;background:var(--fill);height:32px}
+  .field.tall{height:76px}
+  .foot{border-top:1.5px solid var(--line2);background:var(--fill);padding:14px 20px;
+    display:flex;justify-content:space-between;align-items:center;font-size:10px;color:var(--note)}
+  .dots{display:flex;gap:6px}
+  .dot{width:22px;height:22px;border:1.5px solid var(--line2);border-radius:5px;display:block}
+  .tl{border-left:2px solid var(--line2);padding-left:22px;position:relative}
+  .tl-item{position:relative;margin-bottom:20px}
+  .tl-item::before{content:"";position:absolute;left:-29px;top:6px;width:11px;height:11px;
+    border-radius:50%;background:var(--accent);border:3px solid var(--paper)}
+  .anno{font-size:11px;color:var(--note);font-style:italic;margin:10px 0 0}
+  .anno b{font-style:normal;color:var(--ink)}
+  .burger{display:flex;flex-direction:column;gap:3px}
+  .burger i{display:block;width:16px;height:2px;background:var(--line2)}
+  .exp-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+  pre{margin:0;font:12px/1.9 ui-monospace,monospace;color:var(--ink);overflow-x:auto}
+  @media print{body{background:#fff;padding:0} .frame{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Wireframes — Portfólio Profissional</h1>
+  <p class="sub">Lab01S01 · Média fidelidade · Desktop (1440px) e Mobile (375px)</p>
+
+  <div class="legend">
+    <span><b>▨</b> área de imagem/GIF</span>
+    <span><b>▬</b> bloco de texto</span>
+    <span><b>▭</b> campo de formulário</span>
+    <span><b>●</b> marcador da timeline</span>
+    <span><b>Grid:</b> container 1120px · gutter 24px</span>
+    <span><b>Breakpoints:</b> sm 640 · md 768 · lg 1024</span>
+  </div>
+
+  <!-- 1. SOBRE MIM -->
+  <h2>1. Sobre Mim <span style="font-weight:400;color:var(--note)">— rota <code>/</code></span></h2>
+  <p class="h2sub">Hero de apresentação + biografia PT/EN (toggle no cabeçalho) + bloco de habilidades.</p>
+  <div class="row">
+    <div class="desktop">
+      <p class="caption">Desktop</p>
+      <div class="frame">
+        <div class="bar">
+          <div class="logo"><div class="sq"></div> Nome Sobrenome</div>
+          <div class="nav"><span class="on">Sobre Mim</span><span>Projetos</span><span>Experiências</span><span>Contato</span><span class="pill">PT / EN</span></div>
+        </div>
+        <div class="body">
+          <div class="stack" style="padding:26px 0 30px">
+            <div class="t lbl" style="background:var(--accent);opacity:.5"></div>
+            <div class="t h1"></div>
+            <div class="t w70"></div>
+            <div class="t w35"></div>
+            <div class="gap-s"></div>
+            <div><span class="btn">Ver projetos →</span> <span class="btn ghost">Entrar em contato</span></div>
+          </div>
+          <div style="border-top:1.5px solid var(--line)"></div>
+          <div class="gap"></div>
+          <div class="t h2"></div>
+          <div style="height:2px;width:56px;background:var(--accent);margin:10px 0 20px"></div>
+          <div class="grid2">
+            <div class="stack">
+              <div class="t w90"></div><div class="t w90"></div><div class="t w80"></div>
+              <div class="gap-s"></div>
+              <div class="t w90"></div><div class="t w70"></div>
+              <div class="gap-s"></div>
+              <div class="t w90"></div><div class="t w60"></div>
+            </div>
+            <div class="stack">
+              <div class="t lbl"></div>
+              <div class="tags"><span class="tag">Java</span><span class="tag">JavaScript</span><span class="tag">Python</span></div>
+              <div class="gap-s"></div>
+              <div class="t lbl"></div>
+              <div class="tags"><span class="tag">React</span><span class="tag">Tailwind</span><span class="tag">HTML/CSS</span></div>
+              <div class="gap-s"></div>
+              <div class="t lbl"></div>
+              <div class="tags"><span class="tag">Node</span><span class="tag">Spring</span><span class="tag">SQL</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="foot"><span>© 2026 Nome — Todos os direitos reservados</span><span class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></span></div>
+      </div>
+      <p class="anno"><b>Interações:</b> o botão PT/EN troca todo o conteúdo textual sem recarregar a página (React Context). O link ativo do menu é marcado com a cor de acento.</p>
+    </div>
+
+    <div class="mobile">
+      <p class="caption">Mobile</p>
+      <div class="frame">
+        <div class="bar"><div class="logo"><div class="sq"></div></div><div class="burger"><i></i><i></i><i></i></div></div>
+        <div class="body">
+          <div class="stack">
+            <div class="t lbl" style="background:var(--accent);opacity:.5"></div>
+            <div class="t h1" style="width:85%"></div>
+            <div class="t w90"></div><div class="t w60"></div>
+            <div class="gap-s"></div>
+            <div class="btn" style="display:block;text-align:center">Ver projetos →</div>
+            <div class="btn ghost" style="display:block;text-align:center">Contato</div>
+          </div>
+          <div class="gap"></div>
+          <div class="t h2" style="width:55%"></div>
+          <div style="height:2px;width:44px;background:var(--accent);margin:8px 0 14px"></div>
+          <div class="stack">
+            <div class="t w90"></div><div class="t w90"></div><div class="t w70"></div>
+            <div class="gap-s"></div>
+            <div class="t lbl"></div>
+            <div class="tags"><span class="tag">Java</span><span class="tag">React</span><span class="tag">SQL</span></div>
+          </div>
+        </div>
+        <div class="foot" style="flex-direction:column;gap:8px"><span>© 2026 Nome</span><span class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></span></div>
+      </div>
+      <p class="anno"><b>&lt; 768px:</b> o menu vira drawer sanfonado, as colunas empilham e os botões ficam em largura total.</p>
+    </div>
+  </div>
+
+  <!-- 2. PROJETOS -->
+  <h2>2. Projetos <span style="font-weight:400;color:var(--note)">— rota <code>/projetos</code></span></h2>
+  <p class="h2sub">Linha do tempo vertical, do projeto mais antigo (topo) ao mais recente (base).</p>
+  <div class="row">
+    <div class="desktop">
+      <p class="caption">Desktop</p>
+      <div class="frame">
+        <div class="bar">
+          <div class="logo"><div class="sq"></div> Nome Sobrenome</div>
+          <div class="nav"><span>Sobre Mim</span><span class="on">Projetos</span><span>Experiências</span><span>Contato</span><span class="pill">PT / EN</span></div>
+        </div>
+        <div class="body">
+          <div class="t h2"></div>
+          <div class="t w45" style="margin-top:8px"></div>
+          <div style="height:2px;width:56px;background:var(--accent);margin:10px 0 24px"></div>
+          <div class="tl">
+            <div class="tl-item">
+              <div class="t lbl" style="width:22%;margin-bottom:8px"></div>
+              <div class="box">
+                <div class="img" style="height:132px;border:none;border-bottom:1.5px dashed var(--line2);border-radius:6px 6px 0 0">imagem / GIF do projeto em execução</div>
+                <div style="padding:14px 16px" class="stack">
+                  <div class="t h2" style="width:46%;height:14px"></div>
+                  <div class="t w90"></div><div class="t w70"></div>
+                  <div class="tags" style="margin-top:10px"><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">PostgreSQL</span></div>
+                  <div class="gap-s"></div>
+                  <div style="display:flex;gap:18px;font-size:10px;color:var(--note)">▣ Repositório GitHub &nbsp; ▣ Ver demo</div>
+                </div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="t lbl" style="width:22%;margin-bottom:8px"></div>
+              <div class="box">
+                <div class="img" style="height:132px;border:none;border-bottom:1.5px dashed var(--line2);border-radius:6px 6px 0 0">imagem / GIF do projeto em execução</div>
+                <div style="padding:14px 16px" class="stack">
+                  <div class="t h2" style="width:52%;height:14px"></div>
+                  <div class="t w90"></div><div class="t w60"></div>
+                  <div class="tags" style="margin-top:10px"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">MongoDB</span></div>
+                  <div class="gap-s"></div>
+                  <div style="display:flex;gap:18px;font-size:10px;color:var(--note)">▣ Repositório GitHub</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="foot"><span>© 2026 Nome — Todos os direitos reservados</span><span class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></span></div>
+      </div>
+      <p class="anno"><b>Dados:</b> renderizado com <code>.map()</code> sobre <code>src/data/projetos.js</code> — adicionar um projeto = adicionar um objeto ao array.</p>
+    </div>
+
+    <div class="mobile">
+      <p class="caption">Mobile</p>
+      <div class="frame">
+        <div class="bar"><div class="logo"><div class="sq"></div></div><div class="burger"><i></i><i></i><i></i></div></div>
+        <div class="body">
+          <div class="t h2" style="width:50%"></div>
+          <div style="height:2px;width:44px;background:var(--accent);margin:8px 0 16px"></div>
+          <div class="tl" style="padding-left:16px">
+            <div class="tl-item">
+              <div class="t lbl" style="width:40%;margin-bottom:6px"></div>
+              <div class="box">
+                <div class="img" style="height:80px;border:none;border-bottom:1.5px dashed var(--line2)">imagem / GIF</div>
+                <div style="padding:10px 12px" class="stack">
+                  <div class="t h2" style="width:70%;height:12px"></div>
+                  <div class="t w90"></div><div class="t w70"></div>
+                  <div class="tags" style="margin-top:8px"><span class="tag">React</span><span class="tag">Node</span></div>
+                  <div style="font-size:9px;color:var(--note);margin-top:8px">▣ GitHub</div>
+                </div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="t lbl" style="width:40%;margin-bottom:6px"></div>
+              <div class="box">
+                <div class="img" style="height:80px;border:none;border-bottom:1.5px dashed var(--line2)">imagem / GIF</div>
+                <div style="padding:10px 12px" class="stack">
+                  <div class="t h2" style="width:60%;height:12px"></div>
+                  <div class="t w90"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="foot" style="flex-direction:column;gap:8px"><span>© 2026 Nome</span><span class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></span></div>
+      </div>
+      <p class="anno">A linha da timeline permanece, com recuo menor e cards em largura total.</p>
+    </div>
+  </div>
+
+  <!-- 3. EXPERIÊNCIAS -->
+  <h2>3. Experiências <span style="font-weight:400;color:var(--note)">— rota <code>/experiencias</code></span></h2>
+  <p class="h2sub">Lista de cards: empresa/instituição, cargo, período, tipo e descrição.</p>
+  <div class="row">
+    <div class="desktop">
+      <p class="caption">Desktop</p>
+      <div class="frame">
+        <div class="bar">
+          <div class="logo"><div class="sq"></div> Nome Sobrenome</div>
+          <div class="nav"><span>Sobre Mim</span><span>Projetos</span><span class="on">Experiências</span><span>Contato</span><span class="pill">PT / EN</span></div>
+        </div>
+        <div class="body">
+          <div class="t h2"></div>
+          <div class="t w45" style="margin-top:8px"></div>
+          <div style="height:2px;width:56px;background:var(--accent);margin:10px 0 22px"></div>
+          <div class="stack">
+            <div class="box" style="padding:16px 18px">
+              <div class="exp-head">
+                <div class="stack" style="flex:1">
+                  <div class="t h2" style="width:44%;height:14px"></div>
+                  <div class="t w35" style="background:var(--accent);opacity:.45"></div>
+                </div>
+                <div style="text-align:right" class="stack">
+                  <div class="t lbl" style="width:96px;margin-left:auto"></div>
+                  <span class="tag">Estágio</span>
+                </div>
+              </div>
+              <div class="stack" style="margin-top:14px">
+                <div class="t w90"></div><div class="t w80"></div>
+              </div>
+              <div class="tags" style="margin-top:12px"><span class="tag">Java</span><span class="tag">Git</span></div>
+            </div>
+            <div class="box" style="padding:16px 18px">
+              <div class="exp-head">
+                <div class="stack" style="flex:1">
+                  <div class="t h2" style="width:52%;height:14px"></div>
+                  <div class="t w35" style="background:var(--accent);opacity:.45"></div>
+                </div>
+                <div style="text-align:right" class="stack">
+                  <div class="t lbl" style="width:96px;margin-left:auto"></div>
+                  <span class="tag">Evento</span>
+                </div>
+              </div>
+              <div class="stack" style="margin-top:14px"><div class="t w90"></div><div class="t w60"></div></div>
+            </div>
+            <div class="box" style="padding:16px 18px">
+              <div class="exp-head">
+                <div class="stack" style="flex:1">
+                  <div class="t h2" style="width:40%;height:14px"></div>
+                  <div class="t w35" style="background:var(--accent);opacity:.45"></div>
+                </div>
+                <div style="text-align:right" class="stack">
+                  <div class="t lbl" style="width:96px;margin-left:auto"></div>
+                  <span class="tag">Freelance</span>
+                </div>
+              </div>
+              <div class="stack" style="margin-top:14px"><div class="t w80"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="foot"><span>© 2026 Nome — Todos os direitos reservados</span><span class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></span></div>
+      </div>
+      <p class="anno"><b>Tipo</b> (Estágio / CLT / Freelance / Open Source / Evento) fica em um selo, o que permite adicionar filtro por categoria numa evolução futura.</p>
+    </div>
+
+    <div class="mobile">
+      <p class="caption">Mobile</p>
+      <div class="frame">
+        <div class="bar"><div class="logo"><div class="sq"></div></div><div class="burger"><i></i><i></i><i></i></div></div>
+        <div class="body">
+          <div class="t h2" style="width:62%"></div>
+          <div style="height:2px;width:44px;background:var(--accent);margin:8px 0 14px"></div>
+          <div class="stack">
+            <div class="box" style="padding:12px 14px">
+              <div class="stack">
+                <div class="t h2" style="width:80%;height:12px"></div>
+                <div class="t w60" style="background:var(--accent);opacity:.45"></div>
+                <div style="display:flex;gap:8px;align-items:center"><span class="t lbl" style="width:70px"></span><span class="tag">Estágio</span></div>
+                <div class="t w90"></div><div class="t w80"></div>
+              </div>
+            </div>
+            <div class="box" style="padding:12px 14px">
+              <div class="stack">
+                <div class="t h2" style="width:70%;height:12px"></div>
+                <div class="t w60" style="background:var(--accent);opacity:.45"></div>
+                <div class="t w90"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="foot" style="flex-direction:column;gap:8px"><span>© 2026 Nome</span><span class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></span></div>
+      </div>
+      <p class="anno">O cabeçalho do card empilha: período e selo passam para baixo do cargo.</p>
+    </div>
+  </div>
+
+  <!-- 4. CONTATO -->
+  <h2>4. Contato <span style="font-weight:400;color:var(--note)">— rota <code>/contato</code></span></h2>
+  <p class="h2sub">Duas colunas: canais com ícones clicáveis à esquerda, formulário à direita.</p>
+  <div class="row">
+    <div class="desktop">
+      <p class="caption">Desktop</p>
+      <div class="frame">
+        <div class="bar">
+          <div class="logo"><div class="sq"></div> Nome Sobrenome</div>
+          <div class="nav"><span>Sobre Mim</span><span>Projetos</span><span>Experiências</span><span class="on">Contato</span><span class="pill">PT / EN</span></div>
+        </div>
+        <div class="body">
+          <div class="t h2"></div>
+          <div class="t w45" style="margin-top:8px"></div>
+          <div style="height:2px;width:56px;background:var(--accent);margin:10px 0 22px"></div>
+          <div class="grid2b">
+            <div class="stack">
+              <div class="box" style="padding:12px 14px;display:flex;gap:12px;align-items:center">
+                <span class="dot" style="width:34px;height:34px"></span>
+                <span class="stack" style="flex:1"><span class="t lbl" style="display:block;width:36%"></span><span class="t w70" style="display:block"></span></span>
+              </div>
+              <div class="box" style="padding:12px 14px;display:flex;gap:12px;align-items:center">
+                <span class="dot" style="width:34px;height:34px"></span>
+                <span class="stack" style="flex:1"><span class="t lbl" style="display:block;width:44%"></span><span class="t w60" style="display:block"></span></span>
+              </div>
+              <div class="box" style="padding:12px 14px;display:flex;gap:12px;align-items:center">
+                <span class="dot" style="width:34px;height:34px"></span>
+                <span class="stack" style="flex:1"><span class="t lbl" style="display:block;width:38%"></span><span class="t w70" style="display:block"></span></span>
+              </div>
+              <div class="box" style="padding:12px 14px;display:flex;gap:12px;align-items:center">
+                <span class="dot" style="width:34px;height:34px"></span>
+                <span class="stack" style="flex:1"><span class="t lbl" style="display:block;width:32%"></span><span class="t w60" style="display:block"></span></span>
+              </div>
+              <p class="anno" style="margin-top:4px">E-mail · WhatsApp · LinkedIn · GitHub</p>
+            </div>
+            <div class="box" style="padding:18px">
+              <div class="t h2" style="width:56%;height:14px;margin-bottom:16px"></div>
+              <div class="stack">
+                <div class="t lbl" style="width:20%"></div><div class="field"></div>
+                <div class="t lbl" style="width:24%"></div><div class="field"></div>
+                <div class="t lbl" style="width:28%"></div><div class="field tall"></div>
+              </div>
+              <div class="btn" style="display:block;text-align:center;margin-top:16px">Enviar mensagem</div>
+              <p class="anno" style="text-align:center">Envio real por e-mail: Sprint 02</p>
+            </div>
+          </div>
+        </div>
+        <div class="foot"><span>© 2026 Nome — Todos os direitos reservados</span><span class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></span></div>
+      </div>
+      <p class="anno"><b>Validação:</b> campos obrigatórios e e-mail em formato válido, com mensagem de erro abaixo de cada campo (Sprint 02).</p>
+    </div>
+
+    <div class="mobile">
+      <p class="caption">Mobile</p>
+      <div class="frame">
+        <div class="bar"><div class="logo"><div class="sq"></div></div><div class="burger"><i></i><i></i><i></i></div></div>
+        <div class="body">
+          <div class="t h2" style="width:48%"></div>
+          <div style="height:2px;width:44px;background:var(--accent);margin:8px 0 14px"></div>
+          <div class="stack">
+            <div class="box" style="padding:10px 12px;display:flex;gap:10px;align-items:center">
+              <span class="dot" style="width:28px;height:28px"></span><span class="t w70" style="display:block;flex:1"></span>
+            </div>
+            <div class="box" style="padding:10px 12px;display:flex;gap:10px;align-items:center">
+              <span class="dot" style="width:28px;height:28px"></span><span class="t w70" style="display:block;flex:1"></span>
+            </div>
+            <div class="gap-s"></div>
+            <div class="box" style="padding:14px">
+              <div class="stack">
+                <div class="t lbl" style="width:28%"></div><div class="field"></div>
+                <div class="t lbl" style="width:32%"></div><div class="field"></div>
+                <div class="t lbl" style="width:36%"></div><div class="field tall"></div>
+                <div class="btn" style="display:block;text-align:center;margin-top:6px">Enviar</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="foot" style="flex-direction:column;gap:8px"><span>© 2026 Nome</span><span class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></span></div>
+      </div>
+      <p class="anno">As colunas empilham: canais primeiro, formulário abaixo.</p>
+    </div>
+  </div>
+
+  <!-- 5. MAPA DE NAVEGAÇÃO -->
+  <h2>5. Mapa de navegação</h2>
+  <p class="h2sub">Cabeçalho fixo presente em todas as rotas; qualquer página alcança qualquer outra em 1 clique.</p>
+  <div class="frame" style="padding:24px;background:var(--paper)">
+<pre>
+  Layout (Header fixo + Footer)
+  │
+  ├── /                → Sobre Mim      (hero + bio PT/EN + habilidades)
+  ├── /projetos        → Projetos       (timeline: antigo → recente)
+  ├── /experiencias    → Experiências   (cards empresa/cargo/período)
+  ├── /contato         → Contato        (ícones + formulário)
+  └── *                → 404            (link de retorno ao início)
+
+  Estado global: idioma (PT/EN) via React Context — persiste ao trocar de rota.
+  Ao mudar de rota: o scroll volta ao topo automaticamente.
+</pre>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+// Textos de interface (labels, títulos de seção) em PT e EN
+export const textos = {
+  pt: {
+    nav: { sobre: 'Sobre Mim', projetos: 'Projetos', experiencias: 'Experiências', contato: 'Contato' },
+    hero: { cta1: 'Ver projetos', cta2: 'Entrar em contato' },
+    sobre: { titulo: 'Sobre Mim', habilidades: 'Habilidades' },
+    projetos: {
+      titulo: 'Projetos',
+      subtitulo: 'Linha do tempo — do mais antigo ao mais recente.',
+      repositorio: 'Repositório',
+      demo: 'Ver demo',
+      preview: 'Preview do projeto',
+    },
+    experiencias: { titulo: 'Experiências', subtitulo: 'Trajetória profissional e acadêmica.' },
+    contato: {
+      titulo: 'Contato',
+      subtitulo: 'Vamos conversar? Escolha o canal ou envie uma mensagem.',
+      form: {
+        titulo: 'Envie uma mensagem',
+        nome: 'Nome',
+        email: 'E-mail',
+        mensagem: 'Mensagem',
+        enviar: 'Enviar mensagem',
+        placeholderNome: 'Seu nome',
+        placeholderEmail: 'voce@exemplo.com',
+        placeholderMensagem: 'Escreva sua mensagem...',
+        aviso: 'Envio será implementado na Sprint 02.',
+      },
+    },
+    footer: { direitos: 'Todos os direitos reservados.', feito: 'Feito com React, Vite e Tailwind CSS.' },
+    idioma: 'EN',
+  },
+  en: {
+    nav: { sobre: 'About Me', projetos: 'Projects', experiencias: 'Experience', contato: 'Contact' },
+    hero: { cta1: 'View projects', cta2: 'Get in touch' },
+    sobre: { titulo: 'About Me', habilidades: 'Skills' },
+    projetos: {
+      titulo: 'Projects',
+      subtitulo: 'Timeline — from oldest to most recent.',
+      repositorio: 'Repository',
+      demo: 'Live demo',
+      preview: 'Project preview',
+    },
+    experiencias: { titulo: 'Experience', subtitulo: 'Professional and academic journey.' },
+    contato: {
+      titulo: 'Contact',
+      subtitulo: "Let's talk? Pick a channel or send a message.",
+      form: {
+        titulo: 'Send a message',
+        nome: 'Name',
+        email: 'Email',
+        mensagem: 'Message',
+        enviar: 'Send message',
+        placeholderNome: 'Your name',
+        placeholderEmail: 'you@example.com',
+        placeholderMensagem: 'Write your message...',
+        aviso: 'Sending will be implemented in Sprint 02.',
+      },
+    },
+    footer: { direitos: 'All rights reserved.', feito: 'Built with React, Vite and Tailwind CSS.' },
+    idioma: 'PT',
+  },
+}
