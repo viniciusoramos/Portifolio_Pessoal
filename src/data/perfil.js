@@ -1,10 +1,10 @@
-// ⚠️ PLACEHOLDER — substituir pelos dados reais na Sprint 02
+// Dados pessoais preenchidos. ⚠️ Pendentes: tagline, sobre[pt|en] e habilidades.
 export const perfil = {
-  nome: 'Seu Nome Completo',
-  iniciais: 'SN',
+  nome: 'Vinícius Oliveira Ramos',
+  iniciais: 'VR',
   cargo: {
-    pt: 'Estudante de Engenharia de Software',
-    en: 'Software Engineering Student',
+    pt: 'Engenharia de Software · 6º período · PUC Minas',
+    en: 'Software Engineering · 6th term · PUC Minas',
   },
   tagline: {
     pt: 'Construindo software com foco em qualidade e experiência do usuário.',
