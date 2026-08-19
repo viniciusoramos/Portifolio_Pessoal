@@ -50,15 +50,7 @@ Os wireframes de média fidelidade cobrem as quatro páginas em versão **deskto
 
 **Mapa de navegação**
 
-```
-Layout (Header fixo + Footer)
-│
-├── /                → Sobre Mim      (hero + bio PT/EN + habilidades)
-├── /projetos        → Projetos       (timeline: antigo → recente)
-├── /experiencias    → Experiências   (cards empresa/cargo/período)
-├── /contato         → Contato        (ícones + formulário)
-└── *                → 404            (link de retorno ao início)
-```
+![Mapa de navegação](docs/wireframes/05-mapa.png)
 
 ---
 
