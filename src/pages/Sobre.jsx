@@ -47,14 +47,18 @@ export default function Sobre() {
             </h2>
             <div className="space-y-5">
               {perfil.habilidades.map((h) => (
-                <div key={h.grupo}>
-                  <p className="mb-2 font-mono text-xs text-accent2">{h.grupo}</p>
+                <div key={h.grupo.pt}>
+                  <p className="mb-2 font-mono text-xs text-accent2">{h.grupo[lang]}</p>
                   <div className="flex flex-wrap gap-2">
-                    {h.itens.map((item) => (
-                      <span key={item} className="tag">
-                        {item}
-                      </span>
-                    ))}
+                    {/* nomes próprios ficam como string; expressões vêm em { pt, en } */}
+                    {h.itens.map((item) => {
+                      const rotulo = typeof item === 'string' ? item : item[lang]
+                      return (
+                        <span key={rotulo} className="tag">
+                          {rotulo}
+                        </span>
+                      )
+                    })}
                   </div>
                 </div>
               ))}
