@@ -89,14 +89,17 @@ export default function Projetos() {
                   </div>
 
                   <div className="mt-5 flex flex-wrap gap-4 text-sm">
-                    <a
-                      href={p.github}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-1.5 text-fg transition-colors hover:text-accent"
-                    >
-                      <Github size={16} /> {t.projetos.repositorio}
-                    </a>
+                    {/* nem todo projeto tem repositório público */}
+                    {p.github && (
+                      <a
+                        href={p.github}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1.5 text-fg transition-colors hover:text-accent"
+                      >
+                        <Github size={16} /> {t.projetos.repositorio}
+                      </a>
+                    )}
                     {p.demo && (
                       <a
                         href={p.demo}
