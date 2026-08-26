@@ -1,34 +1,21 @@
-// ⚠️ PLACEHOLDER — substituir pelas experiências reais.
 // A ordem do array não importa: a página ordena pelo campo `inicio`, da mais
 // recente para a mais antiga.
 //
 // `tipo` precisa ser uma das chaves de textos[lang].experiencias.tipos:
 //   'estagio' | 'clt' | 'freelance' | 'openSource' | 'evento'
-// O rótulo exibido sai traduzido conforme o idioma ativo.
 export const experiencias = [
   {
-    id: 'exp-1',
-    empresa: 'Nome da Empresa / Instituição',
-    cargo: { pt: 'Cargo ou atividade', en: 'Role or activity' },
-    inicio: '2025-03',
+    id: 'cpmh',
+    empresa: 'CPMH',
+    cargo: { pt: 'Estagiário', en: 'Intern' },
+    // ⚠️ PREENCHER: mês e ano de início e de fim, no formato 'AAAA-MM'.
+    // Use fim: null se o estágio ainda estiver em andamento.
+    inicio: null,
     fim: null,
     tipo: 'estagio',
     descricao: {
-      pt: 'Breve descrição das responsabilidades e resultados.',
-      en: 'Brief description of responsibilities and results.',
-    },
-    tecnologias: ['Java', 'Git'],
-  },
-  {
-    id: 'exp-2',
-    empresa: 'Nome do Evento / Projeto Open Source',
-    cargo: { pt: 'Participação', en: 'Participation' },
-    inicio: '2024-10',
-    fim: '2024-10',
-    tipo: 'evento',
-    descricao: {
-      pt: 'Breve descrição da participação.',
-      en: 'Brief description of the participation.',
+      pt: 'Acompanhamento e otimização do fluxo de trabalho de projetos personalizados, com ênfase na automação de relatórios e na elaboração de documentos de apoio ao cirurgião. Atuação também na comparação de malhas e segmentações entre diferentes softwares e no suporte à movimentação, avaliação e análise de casos de deformidades dentoesqueléticas.',
+      en: 'Monitoring and optimising the workflow of custom projects, with emphasis on report automation and on producing support documents for the surgeon. Also worked on comparing meshes and segmentations across different software packages, and supported the positioning, evaluation and analysis of dentoskeletal deformity cases.',
     },
     tecnologias: [],
   },

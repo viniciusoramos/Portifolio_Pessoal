@@ -1,4 +1,4 @@
-// E-mail e WhatsApp reais. ⚠️ Pendentes: LinkedIn e GitHub.
+// ⚠️ Pendente: LinkedIn.
 export const contatos = [
   {
     id: 'email',
@@ -13,5 +13,10 @@ export const contatos = [
     href: 'https://wa.me/5537998638074',
   },
   { id: 'linkedin', label: 'LinkedIn', valor: '/in/seu-usuario', href: 'https://linkedin.com/in/seu-usuario' },
-  { id: 'github', label: 'GitHub', valor: '@seu-usuario', href: 'https://github.com/seu-usuario' },
+  {
+    id: 'github',
+    label: 'GitHub',
+    valor: '@viniciusoramos',
+    href: 'https://github.com/viniciusoramos',
+  },
 ]

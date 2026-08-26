@@ -21,11 +21,13 @@ export function formatarMes(iso, lang) {
   return MESES[lang][mes - 1] + ' ' + ano
 }
 
-// fim nulo significa que o projeto ou a experiência continua em andamento
+// fim nulo significa que o projeto ou a experiência continua em andamento.
+// Sem data de início não dá para afirmar nada sobre o período, então o rótulo
+// fica vazio em vez de dizer "atual" por engano.
 export function formatarPeriodo(inicio, fim, lang, rotuloAtual) {
+  if (!inicio) return ''
   const de = formatarMes(inicio, lang)
   const ate = fim ? formatarMes(fim, lang) : rotuloAtual
-  if (!de) return ate
   return de === ate ? de : de + ' — ' + ate
 }
 
