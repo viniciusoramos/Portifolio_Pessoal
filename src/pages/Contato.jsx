@@ -1,26 +1,86 @@
-import { Mail, MessageCircle, Linkedin, Github, Send } from 'lucide-react'
+import { useRef, useState } from 'react'
+import { Mail, MessageCircle, Linkedin, Github, Send, AlertCircle, CheckCircle2 } from 'lucide-react'
 import { useLang } from '../context/LanguageContext'
 import { contatos } from '../data/contatos'
+import { validarCampo, validarFormulario, LIMITES } from '../servicos/validacao'
+import { enviarMensagem } from '../servicos/envio'
 import SectionHeader from '../components/SectionHeader'
 
 const icones = { email: Mail, whatsapp: MessageCircle, linkedin: Linkedin, github: Github }
+
+const VAZIO = { nome: '', email: '', mensagem: '' }
 
 export default function Contato() {
   const { t } = useLang()
   const f = t.contato.form
 
-  // Sprint 02: integrar envio real de e-mail
-  const aoEnviar = (evento) => {
-    evento.preventDefault()
-    alert(f.aviso)
+  const [valores, setValores] = useState(VAZIO)
+  const [erros, setErros] = useState({})
+  const [tocados, setTocados] = useState({})
+  const [status, setStatus] = useState(null)
+  const [enviando, setEnviando] = useState(false)
+
+  // usados para levar o foco ao primeiro campo invalido
+  const refNome = useRef(null)
+  const refEmail = useRef(null)
+  const refMensagem = useRef(null)
+  const referencias = { nome: refNome, email: refEmail, mensagem: refMensagem }
+
+  const canalEmail = contatos.find((c) => c.id === 'email')
+  const destino = canalEmail ? canalEmail.valor : null
+
+  const aoMudar = (campo) => (evento) => {
+    const valor = evento.target.value
+    setValores((atual) => ({ ...atual, [campo]: valor }))
+    // so revalida enquanto digita se o campo ja errou uma vez, para nao acusar
+    // erro logo no primeiro caractere
+    if (tocados[campo]) {
+      setErros((atual) => ({ ...atual, [campo]: validarCampo(campo, valor, f.erros) }))
+    }
   }
+
+  const aoSair = (campo) => () => {
+    setTocados((atual) => ({ ...atual, [campo]: true }))
+    setErros((atual) => ({ ...atual, [campo]: validarCampo(campo, valores[campo], f.erros) }))
+  }
+
+  const aoEnviar = async (evento) => {
+    evento.preventDefault()
+
+    const encontrados = validarFormulario(valores, f.erros)
+    setTocados({ nome: true, email: true, mensagem: true })
+    setErros(encontrados)
+
+    const invalidos = Object.keys(encontrados)
+    if (invalidos.length > 0) {
+      setStatus('revise')
+      const primeiro = referencias[invalidos[0]].current
+      if (primeiro) primeiro.focus()
+      return
+    }
+
+    setEnviando(true)
+    const resultado = await enviarMensagem(valores, { destino })
+    setEnviando(false)
+
+    if (resultado.ok) {
+      setStatus('sucesso')
+      setValores(VAZIO)
+      setTocados({})
+      setErros({})
+    } else {
+      setStatus('erro')
+    }
+  }
+
+  const restantes = LIMITES.mensagemMax - valores.mensagem.length
 
   return (
     <section className="container-app py-16">
       <SectionHeader titulo={t.contato.titulo} subtitulo={t.contato.subtitulo} />
 
       <div className="grid gap-10 lg:grid-cols-2">
-        {/* Ícones / canais */}
+        {/* Icones / canais */}
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
           {contatos.map((c) => {
             const Icone = icones[c.id] ?? Mail
@@ -44,8 +104,8 @@ export default function Contato() {
           })}
         </div>
 
-        {/* Formulário */}
-        <form onSubmit={aoEnviar} className="card animate-fadeUp p-6">
+        {/* Formulario */}
+        <form onSubmit={aoEnviar} noValidate className="card animate-fadeUp p-6">
           <h2 className="mb-5 text-lg font-semibold">{f.titulo}</h2>
 
           <div className="space-y-4">
@@ -54,13 +114,24 @@ export default function Contato() {
                 {f.nome}
               </label>
               <input
+                ref={refNome}
                 id="nome"
                 name="nome"
                 type="text"
-                required
+                value={valores.nome}
+                onChange={aoMudar('nome')}
+                onBlur={aoSair('nome')}
+                maxLength={LIMITES.nomeMax}
                 placeholder={f.placeholderNome}
-                className="w-full rounded-lg border border-line bg-bg px-3.5 py-2.5 text-sm outline-none transition-colors placeholder:text-muted/50 focus:border-accent"
+                aria-invalid={Boolean(erros.nome)}
+                aria-describedby={erros.nome ? 'erro-nome' : undefined}
+                className={erros.nome ? 'campo campo-invalido' : 'campo'}
               />
+              {erros.nome && (
+                <p id="erro-nome" role="alert" className="mt-1.5 flex items-center gap-1.5 text-xs text-danger">
+                  <AlertCircle size={13} /> {erros.nome}
+                </p>
+              )}
             </div>
 
             <div>
@@ -68,33 +139,87 @@ export default function Contato() {
                 {f.email}
               </label>
               <input
+                ref={refEmail}
                 id="email"
                 name="email"
                 type="email"
-                required
+                value={valores.email}
+                onChange={aoMudar('email')}
+                onBlur={aoSair('email')}
+                maxLength={LIMITES.emailMax}
                 placeholder={f.placeholderEmail}
-                className="w-full rounded-lg border border-line bg-bg px-3.5 py-2.5 text-sm outline-none transition-colors placeholder:text-muted/50 focus:border-accent"
+                aria-invalid={Boolean(erros.email)}
+                aria-describedby={erros.email ? 'erro-email' : undefined}
+                className={erros.email ? 'campo campo-invalido' : 'campo'}
               />
+              {erros.email && (
+                <p id="erro-email" role="alert" className="mt-1.5 flex items-center gap-1.5 text-xs text-danger">
+                  <AlertCircle size={13} /> {erros.email}
+                </p>
+              )}
             </div>
 
             <div>
-              <label htmlFor="mensagem" className="mb-1.5 block text-sm text-muted">
-                {f.mensagem}
-              </label>
+              <div className="mb-1.5 flex items-baseline justify-between gap-3">
+                <label htmlFor="mensagem" className="block text-sm text-muted">
+                  {f.mensagem}
+                </label>
+                <span
+                  className={
+                    restantes < 50 ? 'font-mono text-xs text-danger' : 'font-mono text-xs text-muted/60'
+                  }
+                >
+                  {restantes} {f.caracteres}
+                </span>
+              </div>
               <textarea
+                ref={refMensagem}
                 id="mensagem"
                 name="mensagem"
                 rows={5}
-                required
+                value={valores.mensagem}
+                onChange={aoMudar('mensagem')}
+                onBlur={aoSair('mensagem')}
+                maxLength={LIMITES.mensagemMax}
                 placeholder={f.placeholderMensagem}
-                className="w-full resize-y rounded-lg border border-line bg-bg px-3.5 py-2.5 text-sm outline-none transition-colors placeholder:text-muted/50 focus:border-accent"
+                aria-invalid={Boolean(erros.mensagem)}
+                aria-describedby={erros.mensagem ? 'erro-mensagem' : undefined}
+                className={erros.mensagem ? 'campo campo-invalido resize-y' : 'campo resize-y'}
               />
+              {erros.mensagem && (
+                <p id="erro-mensagem" role="alert" className="mt-1.5 flex items-center gap-1.5 text-xs text-danger">
+                  <AlertCircle size={13} /> {erros.mensagem}
+                </p>
+              )}
             </div>
           </div>
 
-          <button type="submit" className="btn-primary mt-6 w-full justify-center">
-            <Send size={16} /> {f.enviar}
+          <button
+            type="submit"
+            disabled={enviando}
+            className="btn-primary mt-6 w-full justify-center disabled:opacity-60"
+          >
+            <Send size={16} /> {enviando ? f.enviando : f.enviar}
           </button>
+
+          {/* regiao viva: leitores de tela anunciam o resultado do envio */}
+          <div aria-live="polite" className="mt-3">
+            {status === 'sucesso' && (
+              <p className="flex items-start gap-2 text-xs text-success">
+                <CheckCircle2 size={14} className="mt-px shrink-0" /> {f.status.sucesso}
+              </p>
+            )}
+            {status === 'erro' && (
+              <p className="flex items-start gap-2 text-xs text-danger">
+                <AlertCircle size={14} className="mt-px shrink-0" /> {f.status.erro}
+              </p>
+            )}
+            {status === 'revise' && (
+              <p className="flex items-start gap-2 text-xs text-danger">
+                <AlertCircle size={14} className="mt-px shrink-0" /> {f.status.revise}
+              </p>
+            )}
+          </div>
 
           <p className="mt-3 text-center font-mono text-xs text-muted/60">{f.aviso}</p>
         </form>

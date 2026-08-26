@@ -33,6 +33,14 @@
     @apply inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent;
   }
 
+  .campo {
+    @apply w-full rounded-lg border border-line bg-bg px-3.5 py-2.5 text-sm outline-none transition-colors placeholder:text-muted/50 focus:border-accent;
+  }
+
+  .campo-invalido {
+    @apply border-danger focus:border-danger;
+  }
+
   .btn-ghost {
     @apply inline-flex items-center gap-2 rounded-lg border border-line px-5 py-2.5 text-sm font-semibold text-fg transition-colors hover:border-accent hover:text-accent;
   }

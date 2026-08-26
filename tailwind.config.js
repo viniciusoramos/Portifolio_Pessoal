@@ -12,6 +12,8 @@ export default {
         muted: '#8B93A7',
         accent: '#7C5CFF',
         accent2: '#22D3EE',
+        danger: '#F87171',
+        success: '#34D399',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],

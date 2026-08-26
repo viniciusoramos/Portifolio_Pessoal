@@ -2,7 +2,7 @@
 
 Website de portfólio profissional desenvolvido para a disciplina **Laboratório de Desenvolvimento de Software** — PUC Minas, Engenharia de Software, 2º semestre de 2026.
 
-> **Status:** Sprint 01 (Lab01S01) — planejamento, prototipação e estrutura de navegação.
+> **Status:** Sprint 02 (Lab01S02) — timeline dinâmica, filtros, formulário validado e responsividade.
 
 ---
 
@@ -14,6 +14,7 @@ Website de portfólio profissional desenvolvido para a disciplina **Laboratório
 - [Dependências](#dependências)
 - [Estrutura de diretórios](#estrutura-de-diretórios)
 - [Instalação e execução local](#instalação-e-execução-local)
+- [Formulário de contato](#formulário-de-contato)
 - [Identidade visual](#identidade-visual)
 - [Roteiro das sprints](#roteiro-das-sprints)
 
@@ -98,9 +99,11 @@ portfolio/
 ├── docs/
 │   └── wireframes/
 │       └── wireframes.html      # Wireframes de média fidelidade (desktop + mobile)
-├── public/                      # Arquivos estáticos (imagens/GIFs dos projetos)
+├── public/
+│   └── favicon.svg              # Ícone da aba (imagens/GIFs dos projetos vêm aqui)
 ├── src/
 │   ├── components/
+│   │   ├── Filtros.jsx          # Barra de chips de filtro (Projetos e Experiências)
 │   │   ├── Footer.jsx           # Rodapé com links sociais
 │   │   ├── Header.jsx           # Cabeçalho fixo, menu responsivo e toggle PT/EN
 │   │   ├── Layout.jsx           # Estrutura base: header + área de conteúdo + footer
@@ -113,6 +116,11 @@ portfolio/
 │   │   ├── perfil.js            # Dados pessoais, bio e habilidades
 │   │   ├── projetos.js          # Projetos da timeline
 │   │   └── textos.js            # Labels da interface em PT e EN
+│   ├── servicos/
+│   │   ├── envio.js             # Ponto único de envio da mensagem de contato
+│   │   └── validacao.js         # Regras de validação do formulário
+│   ├── utils/
+│   │   └── datas.js             # Formatação e ordenação dos períodos
 │   ├── pages/
 │   │   ├── Contato.jsx
 │   │   ├── Experiencias.jsx
@@ -161,6 +169,22 @@ A aplicação ficará disponível em `http://localhost:5173`.
 
 ---
 
+## Formulário de contato
+
+**Validação.** Feita no cliente, sem biblioteca externa, com as regras isoladas em `src/servicos/validacao.js` para poderem ser testadas fora do componente:
+
+| Campo | Regra |
+| --- | --- |
+| Nome | Obrigatório, mínimo 2 e máximo 80 caracteres |
+| E-mail | Obrigatório, formato válido, máximo 120 caracteres |
+| Mensagem | Obrigatória, mínimo 10 e máximo 1000 caracteres, com contador de restantes |
+
+O campo só passa a acusar erro depois do primeiro `blur`, para não reclamar já na primeira letra digitada. No envio, todos são revalidados, o foco vai para o primeiro campo inválido e cada erro é anunciado por leitor de tela (`aria-invalid`, `aria-describedby` e `role="alert"`).
+
+**Envio.** `src/servicos/envio.js` é o único ponto que conhece o transporte. Hoje monta um link `mailto:` e abre o aplicativo de e-mail do visitante com assunto e corpo preenchidos — funciona em hospedagem estática, sem back-end nem chave de API. Para trocar por envio automático (Web3Forms, EmailJS ou uma função serverless na Vercel), basta reescrever o corpo de `enviarMensagem` mantendo a assinatura e o retorno `{ ok }`; nenhuma página muda.
+
+---
+
 ## Identidade visual
 
 Tema escuro minimalista, com foco em legibilidade e destaque para o conteúdo.
@@ -185,7 +209,8 @@ Tema escuro minimalista, com foco em legibilidade e destaque para o conteúdo.
 ## Roteiro das sprints
 
 - [x] **Lab01S01** — Repositório, wireframes, protótipo do front-end, navegação e layout principal
-- [ ] **Lab01S02** — Conteúdo real das quatro páginas, timeline dinâmica, formulário funcional com envio de e-mail, validações e ajustes de responsividade
+- [ ] **Lab01S02** — Timeline com ordenação automática e filtro por tecnologia, experiências filtráveis por tipo, períodos formatados por idioma, formulário com validação completa e responsividade revisada.
+  Pendente: preencher os arquivos de `src/data/` com o conteúdo real e substituir o `mailto:` por envio automático de e-mail.
 - [ ] **Lab01S03** — Deploy em nuvem, imagens/GIFs dos projetos, ajustes visuais e README final
 
 ---
