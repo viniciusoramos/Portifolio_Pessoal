@@ -55,6 +55,7 @@ export default function Experiencias() {
                     <Building2 size={18} className="shrink-0 text-accent" />
                     {e.empresa}
                   </h2>
+                  {e.ramo && <p className="mt-0.5 text-xs text-muted">{e.ramo[lang]}</p>}
                   <p className="mt-1 text-sm text-accent2">{e.cargo[lang]}</p>
                 </div>
                 <div className="flex shrink-0 flex-wrap items-center gap-2 sm:flex-col sm:items-end">

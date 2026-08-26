@@ -7,6 +7,12 @@ export const experiencias = [
   {
     id: 'cpmh',
     empresa: 'CPMH',
+    // `ramo` é opcional: descreve o que a instituição faz, exibido em linha
+    // discreta abaixo do nome. Omita o campo quando não fizer sentido.
+    ramo: {
+      pt: 'Implantes personalizados · impressão 3D em titânio',
+      en: 'Custom implants · 3D printing in titanium',
+    },
     cargo: { pt: 'Estagiário', en: 'Intern' },
     // ⚠️ PREENCHER: mês e ano de início e de fim, no formato 'AAAA-MM'.
     // Use fim: null se o estágio ainda estiver em andamento.
