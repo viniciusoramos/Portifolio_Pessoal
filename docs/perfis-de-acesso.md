@@ -138,18 +138,47 @@ O que muda em cada seção, por perfil. **Tudo continua visível em todos os per
 
 ### 6.1 Diagrama
 
-![Diagrama de casos de uso — Perfis de Acesso](diagramas/casos-de-uso-perfis.png)
+```mermaid
+flowchart LR
+  subgraph atores[" "]
+    direction TB
+    REC["Recrutador / Empresa"]
+    PRO["Professor / Avaliador"]
+    DEV["Desenvolvedor / Comunidade"]
+    VIS(["👤 Visitante"])
+    OWN(["🛠 Proprietário (Vinícius)"])
+  end
 
-Diagrama de casos de uso UML.
+  subgraph sistema["Portfólio — Perfis de Acesso"]
+    direction TB
+    UC03["UC03 Trocar perfil"]
+    UC01["UC01 Selecionar perfil de acesso"]
+    UC02["UC02 Pular seleção"]
+    UC04["UC04 Visualizar portfólio com destaques"]
+    UC05["UC05 Acessar por link com perfil pré-definido"]
+    UC06["UC06 Configurar destaques de um perfil"]
+  end
 
-- **Generalização** (triângulo vazado): Recrutador, Professor e Desenvolvedor são especializações do ator **Visitante** e herdam todas as suas associações. O *Visitante geral* é o próprio ator base, sem especialização.
+  REC -- "é um" --> VIS
+  PRO -- "é um" --> VIS
+  DEV -- "é um" --> VIS
+
+  VIS --> UC01
+  VIS --> UC03
+  VIS --> UC04
+  VIS --> UC05
+  OWN --> UC06
+
+  UC03 -. "«include»" .-> UC01
+  UC02 -. "«extend»" .-> UC01
+```
+
+- **Generalização** ("é um"): Recrutador, Professor e Desenvolvedor são especializações do ator **Visitante** e herdam todas as suas associações. O *Visitante geral* é o próprio ator base, sem especialização.
 - **Associações**: o Visitante é ator dos quatro casos de uso que representam metas suas — UC01, UC03, UC04 e UC05. O **Proprietário** é ator secundário, associado apenas ao UC06.
 - **`«include»`** (UC03 → UC01): trocar de perfil **sempre** passa pela seleção, então UC03 inclui UC01 obrigatoriamente.
 - **`«extend»`** (UC02 → UC01): pular a seleção é comportamento **opcional e condicional**, inserido no ponto de extensão *"escolha do perfil"* de UC01. A seta aponta do caso que estende para o caso base.
 
 **Por que UC04 não tem `«include»`.** Selecionar um perfil não *inclui* visualizar o portfólio: são duas metas distintas do visitante, uma acontecendo depois da outra. Sequência temporal não é relacionamento de caso de uso em UML — expressa-se por pré-condição, e é assim que o UC04 a registra. `«include»` fica reservado a comportamento compartilhado invocado de dentro de outro caso de uso.
-
-Fonte vetorial: [`docs/diagramas/casos-de-uso-perfis.svg`](diagramas/casos-de-uso-perfis.svg).
 
 ### 6.2 UC01 — Selecionar perfil de acesso
 
