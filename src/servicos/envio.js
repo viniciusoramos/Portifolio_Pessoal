@@ -13,7 +13,7 @@ const CHAVE = import.meta.env.VITE_WEB3FORMS_KEY || 'bd4e9454-f72d-4118-a93e-7a2
 
 const ENDPOINT = 'https://api.web3forms.com/submit'
 
-export async function enviarMensagem({ nome, email, mensagem, armadilha }) {
+export async function enviarMensagem({ nome, email, assunto, mensagem, armadilha }) {
   // campo-armadilha: fica escondido no formulário, então só um robô o preenche
   if (armadilha) return { ok: true }
 
@@ -26,7 +26,7 @@ export async function enviarMensagem({ nome, email, mensagem, armadilha }) {
         name: nome,
         email,
         message: mensagem,
-        subject: 'Contato pelo portfolio - ' + nome,
+        subject: assunto && assunto.trim() ? assunto.trim() : 'Contato pelo portfolio - ' + nome,
         from_name: 'Portfolio',
       }),
     })

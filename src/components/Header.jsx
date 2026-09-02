@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { Menu, X, Languages } from 'lucide-react'
+import { Menu, X, Languages, UserCog } from 'lucide-react'
 import { useLang } from '../context/LanguageContext'
+import { usePerfil } from '../context/PerfilContext'
 import { perfil } from '../data/perfil'
 
 export default function Header() {
   const [aberto, setAberto] = useState(false)
-  const { t, toggleLang } = useLang()
+  const { lang, t, toggleLang } = useLang()
+  const { perfilAtivo } = usePerfil()
 
   const links = [
     { to: '/', label: t.nav.sobre, end: true },
@@ -14,6 +16,23 @@ export default function Header() {
     { to: '/experiencias', label: t.nav.experiencias },
     { to: '/contato', label: t.nav.contato },
   ]
+
+  // RF04: mostra o perfil ativo e leva à tela de seleção para trocá-lo
+  const IndicadorPerfil = ({ className = '' }) => (
+    <NavLink
+      to="/perfil"
+      onClick={() => setAberto(false)}
+      title={t.perfilUI.trocar}
+      className={
+        'flex items-center gap-1.5 rounded-md border border-line px-3 py-1.5 font-mono text-xs text-muted transition-colors hover:border-accent hover:text-accent ' +
+        className
+      }
+    >
+      <UserCog size={14} />
+      <span className="text-muted/70">{t.perfilUI.vendoComo}:</span>
+      <span className="font-semibold">{perfilAtivo.rotulo[lang]}</span>
+    </NavLink>
+  )
 
   const estiloLink = ({ isActive }) =>
     [
@@ -37,6 +56,7 @@ export default function Header() {
               {l.label}
             </NavLink>
           ))}
+          <IndicadorPerfil className="ml-2 hidden lg:flex" />
           <button
             onClick={toggleLang}
             className="ml-2 flex items-center gap-1.5 rounded-md border border-line px-3 py-1.5 font-mono text-xs text-muted transition-colors hover:border-accent hover:text-accent"
@@ -71,6 +91,7 @@ export default function Header() {
                 {l.label}
               </NavLink>
             ))}
+            <IndicadorPerfil className="mt-3 self-start" />
             <button
               onClick={toggleLang}
               className="mt-2 flex items-center gap-1.5 self-start rounded-md border border-line px-3 py-1.5 font-mono text-xs text-muted"

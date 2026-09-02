@@ -12,22 +12,26 @@ export const perfil = {
     en: 'Software engineering applied to virtual surgical planning.',
   },
   local: 'Belo Horizonte, MG — Brasil',
+  // Blocos nomeados para que cada perfil possa reordena-los (ver perfis.js).
   sobre: {
-    pt: [
-      'Sou estudante de Engenharia de Software na PUC Minas, atualmente no 6º período, em Belo Horizonte.',
-      'Trabalho com planejamento cirúrgico virtual na CPMH, usando o Blender como uma das plataformas. A rotina envolve segmentação e comparação de malhas entre diferentes softwares, análise de casos de deformidades dentoesqueléticas e a automação dos relatórios e documentos de apoio ao cirurgião.',
-      'Meu interesse está em unir esse domínio à engenharia de software: automatizar o que hoje é manual e transformar o conhecimento clínico em ferramentas confiáveis. No curto prazo, quero aprofundar a experiência prática em desenvolvimento e me consolidar como engenheiro de software.',
-    ],
-    en: [
-      'I am a Software Engineering student at PUC Minas, currently in my 6th term, based in Belo Horizonte, Brazil.',
-      'I work on virtual surgical planning at CPMH, using Blender as one of the platforms. The routine involves segmenting and comparing meshes across different software packages, analysing dentoskeletal deformity cases, and automating the reports and support documents handed to the surgeon.',
-      'My interest lies in bringing that domain together with software engineering: automating what is manual today and turning clinical knowledge into reliable tools. In the short term, I want to deepen my hands-on development experience and establish myself as a software engineer.',
-    ],
+    formacao: {
+      pt: 'Sou estudante de Engenharia de Software na PUC Minas, atualmente no 6º período, em Belo Horizonte.',
+      en: 'I am a Software Engineering student at PUC Minas, currently in my 6th term, based in Belo Horizonte, Brazil.',
+    },
+    atuacao: {
+      pt: 'Trabalho com planejamento cirúrgico virtual na CPMH, usando o Blender como uma das plataformas. A rotina envolve segmentação e comparação de malhas entre diferentes softwares, análise de casos de deformidades dentoesqueléticas e a automação dos relatórios e documentos de apoio ao cirurgião.',
+      en: 'I work on virtual surgical planning at CPMH, using Blender as one of the platforms. The routine involves segmenting and comparing meshes across different software packages, analysing dentoskeletal deformity cases, and automating the reports and support documents handed to the surgeon.',
+    },
+    objetivos: {
+      pt: 'Meu interesse está em unir esse domínio à engenharia de software: automatizar o que hoje é manual e transformar o conhecimento clínico em ferramentas confiáveis. No curto prazo, quero aprofundar a experiência prática em desenvolvimento e me consolidar como engenheiro de software.',
+      en: 'My interest lies in bringing that domain together with software engineering: automating what is manual today and turning clinical knowledge into reliable tools. In the short term, I want to deepen my hands-on development experience and establish myself as a software engineer.',
+    },
   },
   // Os itens podem ser uma string (nomes próprios, iguais nos dois idiomas) ou
   // um par { pt, en } quando forem expressões que precisam de tradução.
   habilidades: [
     {
+      chave: 'planejamento',
       grupo: { pt: 'Planejamento cirúrgico virtual', en: 'Virtual surgical planning' },
       itens: [
         'Blender',
@@ -37,14 +41,17 @@ export const perfil = {
       ],
     },
     {
+      chave: 'linguagens',
       grupo: { pt: 'Linguagens', en: 'Languages' },
       itens: ['Python', 'Java', 'C', 'JavaScript', 'SQL'],
     },
     {
+      chave: 'web',
       grupo: { pt: 'Desenvolvimento web', en: 'Web development' },
       itens: ['React', 'Vite', 'Tailwind CSS', 'Supabase', 'HTML', 'CSS'],
     },
     {
+      chave: 'ferramentas',
       grupo: { pt: 'Ferramentas', en: 'Tools' },
       itens: ['Git', 'Maven', 'Make', 'PlantUML'],
     },

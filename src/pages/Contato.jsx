@@ -1,6 +1,7 @@
-import { useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Mail, MessageCircle, Linkedin, Github, Send, AlertCircle, CheckCircle2 } from 'lucide-react'
 import { useLang } from '../context/LanguageContext'
+import { usePerfil } from '../context/PerfilContext'
 import { contatos } from '../data/contatos'
 import { validarCampo, validarFormulario, LIMITES } from '../servicos/validacao'
 import { enviarMensagem } from '../servicos/envio'
@@ -8,23 +9,41 @@ import SectionHeader from '../components/SectionHeader'
 
 const icones = { email: Mail, whatsapp: MessageCircle, linkedin: Linkedin, github: Github }
 
-const VAZIO = { nome: '', email: '', mensagem: '', armadilha: '' }
+const VAZIO = { nome: '', email: '', assunto: '', mensagem: '', armadilha: '' }
 
 export default function Contato() {
-  const { t } = useLang()
+  const { lang, t } = useLang()
+  const { perfilAtivo } = usePerfil()
   const f = t.contato.form
 
-  const [valores, setValores] = useState(VAZIO)
+  const assuntoSugerido = perfilAtivo.assuntoSugerido[lang] ?? ''
+  const [valores, setValores] = useState({ ...VAZIO, assunto: assuntoSugerido })
   const [erros, setErros] = useState({})
   const [tocados, setTocados] = useState({})
   const [status, setStatus] = useState(null)
   const [enviando, setEnviando] = useState(false)
 
   // usados para levar o foco ao primeiro campo invalido
+  // RF09: ao trocar de perfil ou de idioma, o assunto sugerido acompanha —
+  // desde que o visitante ainda não o tenha editado.
+  const [assuntoEditado, setAssuntoEditado] = useState(false)
+  useEffect(() => {
+    if (!assuntoEditado) setValores((atual) => ({ ...atual, assunto: assuntoSugerido }))
+  }, [assuntoSugerido, assuntoEditado])
+
+  // RF09: a ordem dos canais vem do perfil ativo.
+  const canais = useMemo(() => {
+    const porId = new Map(contatos.map((c) => [c.id, c]))
+    const ordenados = perfilAtivo.ordemContato.map((id) => porId.get(id)).filter(Boolean)
+    const restantes = contatos.filter((c) => !perfilAtivo.ordemContato.includes(c.id))
+    return [...ordenados, ...restantes]
+  }, [perfilAtivo])
+
   const refNome = useRef(null)
   const refEmail = useRef(null)
   const refMensagem = useRef(null)
-  const referencias = { nome: refNome, email: refEmail, mensagem: refMensagem }
+  const refAssunto = useRef(null)
+  const referencias = { nome: refNome, email: refEmail, assunto: refAssunto, mensagem: refMensagem }
 
   const aoMudar = (campo) => (evento) => {
     const valor = evento.target.value
@@ -45,7 +64,7 @@ export default function Contato() {
     evento.preventDefault()
 
     const encontrados = validarFormulario(valores, f.erros)
-    setTocados({ nome: true, email: true, mensagem: true })
+    setTocados({ nome: true, email: true, assunto: true, mensagem: true })
     setErros(encontrados)
 
     const invalidos = Object.keys(encontrados)
@@ -62,7 +81,8 @@ export default function Contato() {
 
     if (resultado.ok) {
       setStatus('sucesso')
-      setValores(VAZIO)
+      setValores({ ...VAZIO, assunto: assuntoSugerido })
+      setAssuntoEditado(false)
       setTocados({})
       setErros({})
     } else {
@@ -79,7 +99,7 @@ export default function Contato() {
       <div className="grid gap-10 lg:grid-cols-2">
         {/* Icones / canais */}
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-          {contatos.map((c) => {
+          {canais.map((c) => {
             const Icone = icones[c.id] ?? Mail
             return (
               <a
@@ -164,6 +184,34 @@ export default function Contato() {
               {erros.email && (
                 <p id="erro-email" role="alert" className="mt-1.5 flex items-center gap-1.5 text-xs text-danger">
                   <AlertCircle size={13} /> {erros.email}
+                </p>
+              )}
+            </div>
+
+            <div>
+              <label htmlFor="assunto" className="mb-1.5 block text-sm text-muted">
+                {f.assunto}
+              </label>
+              <input
+                ref={refAssunto}
+                id="assunto"
+                name="assunto"
+                type="text"
+                value={valores.assunto}
+                onChange={(e) => {
+                  setAssuntoEditado(true)
+                  aoMudar('assunto')(e)
+                }}
+                onBlur={aoSair('assunto')}
+                maxLength={LIMITES.assuntoMax}
+                placeholder={f.placeholderAssunto}
+                aria-invalid={Boolean(erros.assunto)}
+                aria-describedby={erros.assunto ? 'erro-assunto' : undefined}
+                className={erros.assunto ? 'campo campo-invalido' : 'campo'}
+              />
+              {erros.assunto && (
+                <p id="erro-assunto" role="alert" className="mt-1.5 flex items-center gap-1.5 text-xs text-danger">
+                  <AlertCircle size={13} /> {erros.assunto}
                 </p>
               )}
             </div>

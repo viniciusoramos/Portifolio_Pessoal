@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
-import { Building2 } from 'lucide-react'
+import { Building2, Star } from 'lucide-react'
 import { useLang } from '../context/LanguageContext'
+import { usePerfil } from '../context/PerfilContext'
 import { experiencias } from '../data/experiencias'
 import { ordenarPorInicio, formatarPeriodo } from '../utils/datas'
 import SectionHeader from '../components/SectionHeader'
@@ -8,6 +9,7 @@ import Filtros from '../components/Filtros'
 
 export default function Experiencias() {
   const { lang, t } = useLang()
+  const { perfilAtivo } = usePerfil()
   const [tipo, setTipo] = useState(null)
 
   // Da mais recente para a mais antiga, que é a leitura esperada de um currículo.
@@ -26,6 +28,10 @@ export default function Experiencias() {
   )
 
   const contador = visiveis.length === 1 ? t.experiencias.contador.um : t.experiencias.contador.varios
+
+  // RF08: marcação por perfil; a lista continua completa (RF10)
+  const tagsPerfil = perfilAtivo.tagsDestaque.experiencias
+  const ehDestaque = (exp) => tagsPerfil.some((tag) => (exp.tags ?? []).includes(tag))
 
   return (
     <section className="container-app py-16">
@@ -48,7 +54,14 @@ export default function Experiencias() {
       ) : (
         <div className="space-y-5">
           {visiveis.map((e) => (
-            <article key={e.id} className="card animate-fadeUp p-5 sm:p-6">
+            <article
+              key={e.id}
+              className={
+                ehDestaque(e)
+                  ? 'card animate-fadeUp border-accent/50 p-5 sm:p-6'
+                  : 'card animate-fadeUp p-5 sm:p-6'
+              }
+            >
               <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                 <div className="min-w-0">
                   <h2 className="flex items-center gap-2 text-lg font-semibold">
@@ -63,6 +76,11 @@ export default function Experiencias() {
                     {formatarPeriodo(e.inicio, e.fim, lang, t.comum.atual)}
                   </span>
                   <span className="tag">{t.experiencias.tipos[e.tipo] ?? e.tipo}</span>
+                  {ehDestaque(e) && (
+                    <span className="flex items-center gap-1 rounded-full bg-accent px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-white">
+                      <Star size={10} /> {t.perfilUI.destaque}
+                    </span>
+                  )}
                 </div>
               </div>
 

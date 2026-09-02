@@ -23,5 +23,6 @@ export const experiencias = [
       en: 'Monitoring and optimising the workflow of custom projects, with emphasis on report automation and on producing support documents for the surgeon. Also worked on comparing meshes and segmentations across different software packages, and supported the positioning, evaluation and analysis of dentoskeletal deformity cases.',
     },
     tecnologias: [],
+    tags: ['profissional'],
   },
 ]

@@ -1,7 +1,7 @@
 # Perfis de Acesso — Levantamento de Requisitos e Casos de Uso
 
 > **Lab01 · Sprint 02 · Portfólio Profissional — Vinícius Oliveira Ramos**
-> Versão 1.0 · 26/08/2026 · Status: validado com o PO (decisões na seção 11) · Implementação: pendente, prevista para o Lab01S03
+> Versão 1.0 · 26/08/2026 · Status: validado com o PO (decisões na seção 11) · Implementação: **concluída** no Lab01S03
 
 ---
 

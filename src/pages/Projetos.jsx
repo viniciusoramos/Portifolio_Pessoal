@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
-import { Github, ExternalLink } from 'lucide-react'
+import { Github, ExternalLink, Star } from 'lucide-react'
 import { useLang } from '../context/LanguageContext'
+import { usePerfil } from '../context/PerfilContext'
 import { projetos } from '../data/projetos'
 import { ordenarPorInicio, formatarPeriodo } from '../utils/datas'
 import SectionHeader from '../components/SectionHeader'
@@ -8,6 +9,7 @@ import Filtros from '../components/Filtros'
 
 export default function Projetos() {
   const { lang, t } = useLang()
+  const { perfilAtivo } = usePerfil()
   const [tecnologia, setTecnologia] = useState(null)
 
   // A timeline se ordena sozinha pela data de início, do mais antigo ao mais
@@ -27,6 +29,14 @@ export default function Projetos() {
 
   const contador = visiveis.length === 1 ? t.projetos.contador.um : t.projetos.contador.varios
 
+  // RF06 / RN05: destaque é o cruzamento das tags do projeto com as do perfil.
+  // Nada é escondido — só recebe ênfase (RF10).
+  const tagsPerfil = perfilAtivo.tagsDestaque.projetos
+  const ehDestaque = (proj) => tagsPerfil.some((tag) => proj.tags.includes(tag))
+
+  // RF07: faixa de atalhos, só para perfis diferentes de 'geral'
+  const destaques = useMemo(() => visiveis.filter(ehDestaque), [visiveis, tagsPerfil])
+
   return (
     <section className="container-app py-16">
       <SectionHeader titulo={t.projetos.titulo} subtitulo={t.projetos.subtitulo} />
@@ -39,16 +49,35 @@ export default function Projetos() {
         rotuloTodos={t.comum.todos}
       />
 
-      <p aria-live="polite" className="mb-8 font-mono text-xs text-muted">
+      <p aria-live="polite" className="mb-6 font-mono text-xs text-muted">
         {visiveis.length} {contador}
       </p>
+
+      {destaques.length > 0 && (
+        <nav aria-label={t.perfilUI.faixaDestaques} className="mb-8 rounded-xl border border-accent/30 bg-accent/5 p-4">
+          <p className="mb-2.5 flex items-center gap-1.5 font-mono text-xs uppercase tracking-wider text-accent">
+            <Star size={13} /> {t.perfilUI.faixaDestaques}
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {destaques.map((d) => (
+              <a
+                key={d.id}
+                href={'#' + d.id}
+                className="rounded-full border border-line bg-surface px-3 py-1.5 text-xs text-fg transition-colors hover:border-accent hover:text-accent"
+              >
+                {d.nome}
+              </a>
+            ))}
+          </div>
+        </nav>
+      )}
 
       {visiveis.length === 0 ? (
         <p className="card p-8 text-center text-muted">{t.projetos.vazio}</p>
       ) : (
         <ol className="relative border-l border-line pl-6 sm:pl-10">
           {visiveis.map((p) => (
-            <li key={p.id} className="relative mb-12 animate-fadeUp last:mb-0">
+            <li key={p.id} id={p.id} className="relative mb-12 animate-fadeUp scroll-mt-24 last:mb-0">
               <span className="absolute -left-[31px] top-1.5 grid h-3 w-3 place-items-center rounded-full bg-accent ring-4 ring-bg sm:-left-[47px]" />
 
               <div className="mb-2 flex flex-wrap items-center gap-2">
@@ -60,9 +89,14 @@ export default function Projetos() {
                     {t.projetos.emAndamento}
                   </span>
                 )}
+                {ehDestaque(p) && (
+                  <span className="flex items-center gap-1 rounded-full bg-accent px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-white">
+                    <Star size={10} /> {t.perfilUI.destaque}
+                  </span>
+                )}
               </div>
 
-              <article className="card overflow-hidden">
+              <article className={ehDestaque(p) ? 'card overflow-hidden border-accent/50' : 'card overflow-hidden'}>
                 <div className="p-5 sm:p-6">
                   <h2 className="text-xl font-semibold">{p.nome}</h2>
                   <p className="mt-2 text-muted">{p.descricao[lang]}</p>

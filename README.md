@@ -16,6 +16,7 @@ Website de portfólio profissional desenvolvido para a disciplina **Laboratório
 - [Dependências](#dependências)
 - [Estrutura de diretórios](#estrutura-de-diretórios)
 - [Instalação e execução local](#instalação-e-execução-local)
+- [Perfis de acesso](#perfis-de-acesso)
 - [Formulário de contato](#formulário-de-contato)
 - [Deploy](#deploy)
 - [Documentação de requisitos](#documentação-de-requisitos)
@@ -34,6 +35,7 @@ Aplicação web de página única (SPA) que apresenta trajetória acadêmica e p
 | `/projetos` | **Projetos** | Linha do tempo do projeto mais antigo ao mais recente, com nome, descrição, tecnologias e link do repositório |
 | `/experiencias` | **Experiências** | Experiências profissionais, estágios, freelas, projetos open source e eventos técnicos, com empresa, cargo, período e descrição |
 | `/contato` | **Contato** | Ícones clicáveis (e-mail, WhatsApp, LinkedIn, GitHub) e formulário com envio real de e-mail |
+| `/perfil` | **Seleção de perfil** | Exibida na primeira visita e ao trocar de perfil |
 
 Todo o conteúdo textual alterna entre **português e inglês** por meio de um botão no cabeçalho, sem recarregar a página.
 
@@ -118,11 +120,13 @@ portfolio/
 │   │   ├── Layout.jsx           # Estrutura base: header + área de conteúdo + footer
 │   │   └── SectionHeader.jsx    # Título padrão das seções
 │   ├── context/
-│   │   └── LanguageContext.jsx  # Estado global do idioma (PT/EN)
+│   │   ├── LanguageContext.jsx  # Estado global do idioma (PT/EN)
+│   │   └── PerfilContext.jsx    # Perfil ativo, localStorage e ?perfil=
 │   ├── data/
 │   │   ├── contatos.js          # Canais de contato
 │   │   ├── experiencias.js      # Experiências profissionais
 │   │   ├── perfil.js            # Dados pessoais, bio e habilidades
+│   │   ├── perfis.js            # Perfis de acesso e o que cada um destaca
 │   │   ├── projetos.js          # Projetos da timeline
 │   │   └── textos.js            # Labels da interface em PT e EN
 │   ├── servicos/
@@ -134,6 +138,7 @@ portfolio/
 │   │   ├── Contato.jsx
 │   │   ├── Experiencias.jsx
 │   │   ├── NaoEncontrada.jsx    # Página 404
+│   │   ├── SelecaoPerfil.jsx    # Tela de escolha do perfil (/perfil)
 │   │   ├── Projetos.jsx
 │   │   └── Sobre.jsx
 │   ├── App.jsx                  # Definição das rotas
@@ -175,6 +180,29 @@ A aplicação ficará disponível em `http://localhost:5173`.
 | `npm run dev` | Servidor de desenvolvimento com hot reload |
 | `npm run build` | Gera a versão de produção em `dist/` |
 | `npm run preview` | Serve localmente o conteúdo de `dist/` |
+
+---
+
+## Perfis de acesso
+
+Na primeira visita o site pergunta **quem está acessando** — Recrutador/Empresa, Professor/Avaliador, Desenvolvedor/Comunidade ou Visitante geral — e passa a destacar o que interessa àquele público. Sem login, sem cadastro e sem esconder nada: todo o conteúdo continua visível em qualquer perfil; muda apenas a ênfase.
+
+| O que muda | Onde |
+| --- | --- |
+| Frase do hero e chamada para ação principal | Sobre Mim |
+| Ordem dos parágrafos da biografia | Sobre Mim |
+| Ordem dos grupos de habilidade | Sobre Mim |
+| Marcação "Destaque" e faixa de atalhos "Destaques para você" | Projetos |
+| Marcação "Destaque" nas experiências relevantes | Experiências |
+| Ordem dos canais e assunto sugerido no formulário | Contato |
+
+A relevância vem do cruzamento entre as `tags` de cada projeto ou experiência (`academico`, `profissional`, `freelance`, `open-source`, `evento`) e as tags que o perfil destaca.
+
+**Como funciona.** O `PerfilContext` guarda o perfil ativo, grava no `localStorage` e trata o parâmetro `?perfil=<id>` — útil para mandar um link já no perfil certo, como `?perfil=recrutador`. Ids inválidos são ignorados. Se o `localStorage` estiver bloqueado, a escolha vale só para a sessão e o site funciona normalmente.
+
+**Como configurar.** Todo o comportamento está em [`src/data/perfis.js`](src/data/perfis.js). Adicionar um perfil é acrescentar um objeto ao array — a tela de seleção passa a listá-lo sozinha. Nenhum componente precisa mudar.
+
+O levantamento completo de requisitos e casos de uso está em [Documentação de requisitos](#documentação-de-requisitos).
 
 ---
 
@@ -257,7 +285,7 @@ Tema escuro minimalista, com foco em legibilidade e destaque para o conteúdo.
 
 - [x] **Lab01S01** — Repositório, wireframes, protótipo do front-end, navegação e layout principal
 - [x] **Lab01S02** — Sobre Mim em PT/EN, timeline com ordenação automática e filtro por tecnologia, experiências filtráveis por tipo, períodos formatados por idioma, formulário com validação completa e envio real de e-mail, responsividade revisada.
-- [ ] **Lab01S03** — Deploy em nuvem (feito, em <https://portifolioviniciusramos.netlify.app>), ajustes visuais e README final
+- [ ] **Lab01S03** — Deploy em nuvem (feito, em <https://portifolioviniciusramos.netlify.app>), perfis de acesso (feito), ajustes visuais e README final
 
 ---
 

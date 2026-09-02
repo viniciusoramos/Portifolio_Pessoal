@@ -5,6 +5,7 @@ export const LIMITES = {
   nomeMin: 2,
   nomeMax: 80,
   emailMax: 120,
+  assuntoMax: 120,
   mensagemMin: 10,
   mensagemMax: 1000,
 }
@@ -27,6 +28,12 @@ export function validarCampo(campo, valor, erros) {
     return null
   }
 
+  // O assunto vem pré-preenchido pelo perfil e é opcional: só valida o tamanho.
+  if (campo === 'assunto') {
+    if (v.length > LIMITES.assuntoMax) return erros.assuntoLongo
+    return null
+  }
+
   if (campo === 'mensagem') {
     if (!v) return erros.mensagemVazia
     if (v.length < LIMITES.mensagemMin) return erros.mensagemCurta
@@ -40,7 +47,7 @@ export function validarCampo(campo, valor, erros) {
 // Valida os três campos de uma vez. Devolve { campo: mensagem } só com os inválidos.
 export function validarFormulario(valores, erros) {
   const encontrados = {}
-  for (const campo of ['nome', 'email', 'mensagem']) {
+  for (const campo of ['nome', 'email', 'assunto', 'mensagem']) {
     const erro = validarCampo(campo, valores[campo], erros)
     if (erro) encontrados[campo] = erro
   }
