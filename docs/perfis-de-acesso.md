@@ -138,42 +138,11 @@ O que muda em cada seção, por perfil. **Tudo continua visível em todos os per
 
 ### 6.1 Diagrama
 
-```mermaid
-flowchart LR
-  subgraph atores[" "]
-    direction TB
-    REC["Recrutador / Empresa"]
-    PRO["Professor / Avaliador"]
-    DEV["Desenvolvedor / Comunidade"]
-    VIS(["👤 Visitante"])
-    OWN(["🛠 Proprietário (Vinícius)"])
-  end
+![Diagrama de casos de uso — Perfis de Acesso](diagramas/casos-de-uso-perfis.png)
 
-  subgraph sistema["Portfólio — Perfis de Acesso"]
-    direction TB
-    UC01["UC01 Selecionar perfil de acesso"]
-    UC02["UC02 Pular seleção"]
-    UC03["UC03 Trocar perfil"]
-    UC04["UC04 Visualizar portfólio com destaques"]
-    UC05["UC05 Acessar por link com perfil pré-definido"]
-    UC06["UC06 Configurar destaques de um perfil"]
-  end
+Diagrama de casos de uso UML. Os três perfis identificáveis são especializações do ator **Visitante** (generalização, triângulo vazado); o **Proprietário** é ator secundário, com acesso apenas ao UC06. As dependências tracejadas marcam os relacionamentos «include» e «extend».
 
-  REC -- "é um" --> VIS
-  PRO -- "é um" --> VIS
-  DEV -- "é um" --> VIS
-
-  VIS --> UC01
-  VIS --> UC02
-  VIS --> UC03
-  VIS --> UC05
-  OWN --> UC06
-
-  UC01 -. "«include»" .-> UC04
-  UC02 -. "«include»" .-> UC04
-  UC05 -. "«include»" .-> UC04
-  UC03 -. "«extend»" .-> UC01
-```
+Fonte vetorial: [`docs/diagramas/casos-de-uso-perfis.svg`](diagramas/casos-de-uso-perfis.svg).
 
 ### 6.2 UC01 — Selecionar perfil de acesso
 

@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 700" width="1160" height="700" font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <!-- seta aberta das dependencias «include» / «extend» -->
+    <marker id="seta" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto-start-reverse">
+      <path d="M 1 1 L 11 6 L 1 11" fill="none" stroke="#1c1e24" stroke-width="1.4" />
+    </marker>
+    <!-- triangulo vazado da generalizacao de atores -->
+    <marker id="generalizacao" viewBox="0 0 14 14" refX="13" refY="7" markerWidth="14" markerHeight="14" orient="auto-start-reverse">
+      <path d="M 1 1 L 13 7 L 1 13 Z" fill="#ffffff" stroke="#1c1e24" stroke-width="1.4" />
+    </marker>
+  </defs>
+
+  <style>
+    .uc      { fill:#ece8ff; stroke:#7C5CFF; stroke-width:1.8 }
+    .uc-txt  { font-size:12.5px; fill:#1c1e24; text-anchor:middle }
+    .ator    { fill:none; stroke:#1c1e24; stroke-width:1.8; stroke-linecap:round }
+    .ator-lbl{ font-size:12.5px; fill:#1c1e24; text-anchor:middle; font-weight:600 }
+    .assoc   { stroke:#1c1e24; stroke-width:1.3; fill:none }
+    .dep     { stroke:#1c1e24; stroke-width:1.3; fill:none; stroke-dasharray:6 4 }
+    .estereo { font-size:11px; fill:#4b5160; text-anchor:middle; font-style:italic }
+    .limite  { fill:none; stroke:#1c1e24; stroke-width:1.6 }
+    .limite-lbl { font-size:13px; fill:#1c1e24; text-anchor:middle; font-weight:600 }
+  </style>
+
+  <rect x="0" y="0" width="1160" height="700" fill="#ffffff" />
+
+  <!-- ============ fronteira do sistema ============ -->
+  <rect class="limite" x="415" y="40" width="515" height="620" />
+  <text class="limite-lbl" x="672" y="68">Portfólio — Perfis de Acesso</text>
+
+  <!-- ============ atores ============ -->
+  <!-- Recrutador / Empresa -->
+  <g>
+    <circle class="ator" cx="75" cy="110" r="11" />
+    <line class="ator" x1="75" y1="121" x2="75" y2="155" />
+    <line class="ator" x1="57" y1="134" x2="93" y2="134" />
+    <line class="ator" x1="75" y1="155" x2="61" y2="178" />
+    <line class="ator" x1="75" y1="155" x2="89" y2="178" />
+    <text class="ator-lbl" x="75" y="198">Recrutador /</text>
+    <text class="ator-lbl" x="75" y="214">Empresa</text>
+  </g>
+  <!-- Professor / Avaliador -->
+  <g>
+    <circle class="ator" cx="75" cy="300" r="11" />
+    <line class="ator" x1="75" y1="311" x2="75" y2="345" />
+    <line class="ator" x1="57" y1="324" x2="93" y2="324" />
+    <line class="ator" x1="75" y1="345" x2="61" y2="368" />
+    <line class="ator" x1="75" y1="345" x2="89" y2="368" />
+    <text class="ator-lbl" x="75" y="388">Professor /</text>
+    <text class="ator-lbl" x="75" y="404">Avaliador</text>
+  </g>
+  <!-- Desenvolvedor / Comunidade -->
+  <g>
+    <circle class="ator" cx="75" cy="490" r="11" />
+    <line class="ator" x1="75" y1="501" x2="75" y2="535" />
+    <line class="ator" x1="57" y1="514" x2="93" y2="514" />
+    <line class="ator" x1="75" y1="535" x2="61" y2="558" />
+    <line class="ator" x1="75" y1="535" x2="89" y2="558" />
+    <text class="ator-lbl" x="75" y="578">Desenvolvedor /</text>
+    <text class="ator-lbl" x="75" y="594">Comunidade</text>
+  </g>
+  <!-- Visitante (ator primario) -->
+  <g>
+    <circle class="ator" cx="250" cy="290" r="12" />
+    <line class="ator" x1="250" y1="302" x2="250" y2="338" />
+    <line class="ator" x1="231" y1="316" x2="269" y2="316" />
+    <line class="ator" x1="250" y1="338" x2="235" y2="362" />
+    <line class="ator" x1="250" y1="338" x2="265" y2="362" />
+    <text class="ator-lbl" x="250" y="382">Visitante</text>
+  </g>
+  <!-- Proprietario -->
+  <g>
+    <circle class="ator" cx="1030" cy="540" r="11" />
+    <line class="ator" x1="1030" y1="551" x2="1030" y2="585" />
+    <line class="ator" x1="1012" y1="564" x2="1048" y2="564" />
+    <line class="ator" x1="1030" y1="585" x2="1016" y2="608" />
+    <line class="ator" x1="1030" y1="585" x2="1044" y2="608" />
+    <text class="ator-lbl" x="1030" y="628">Proprietário</text>
+    <text class="ator-lbl" x="1030" y="644">(Vinícius)</text>
+  </g>
+
+  <!-- ============ generalizacoes: cada perfil "e um" Visitante ============ -->
+  <line class="assoc" x1="103" y1="140" x2="222" y2="272" marker-end="url(#generalizacao)" />
+  <line class="assoc" x1="103" y1="322" x2="216" y2="318" marker-end="url(#generalizacao)" />
+  <line class="assoc" x1="103" y1="512" x2="223" y2="352" marker-end="url(#generalizacao)" />
+
+  <!-- ============ casos de uso ============ -->
+  <!-- UC03 Trocar perfil -->
+  <ellipse class="uc" cx="540" cy="120" rx="92" ry="40" />
+  <text class="uc-txt" x="540" y="125">UC03 Trocar perfil</text>
+
+  <!-- UC01 Selecionar perfil -->
+  <ellipse class="uc" cx="540" cy="250" rx="92" ry="40" />
+  <text class="uc-txt" x="540" y="246">UC01 Selecionar perfil</text>
+  <text class="uc-txt" x="540" y="263">de acesso</text>
+
+  <!-- UC02 Pular selecao -->
+  <ellipse class="uc" cx="540" cy="380" rx="92" ry="40" />
+  <text class="uc-txt" x="540" y="385">UC02 Pular seleção</text>
+
+  <!-- UC05 Acessar por link -->
+  <ellipse class="uc" cx="540" cy="510" rx="92" ry="40" />
+  <text class="uc-txt" x="540" y="506">UC05 Acessar por link</text>
+  <text class="uc-txt" x="540" y="523">com perfil pré-definido</text>
+
+  <!-- UC04 Visualizar com destaques -->
+  <ellipse class="uc" cx="805" cy="315" rx="92" ry="40" />
+  <text class="uc-txt" x="805" y="311">UC04 Visualizar portfólio</text>
+  <text class="uc-txt" x="805" y="328">com destaques</text>
+
+  <!-- UC06 Configurar destaques -->
+  <ellipse class="uc" cx="805" cy="580" rx="92" ry="40" />
+  <text class="uc-txt" x="805" y="576">UC06 Configurar destaques</text>
+  <text class="uc-txt" x="805" y="593">de um perfil</text>
+
+  <!-- ============ associacoes ator - caso de uso ============ -->
+  <line class="assoc" x1="277" y1="300" x2="450" y2="135" />
+  <line class="assoc" x1="280" y1="316" x2="448" y2="250" />
+  <line class="assoc" x1="280" y1="330" x2="450" y2="370" />
+  <line class="assoc" x1="277" y1="345" x2="450" y2="500" />
+  <line class="assoc" x1="1004" y1="565" x2="897" y2="577" />
+
+  <!-- ============ dependencias ============ -->
+  <!-- UC03 «extend» UC01 -->
+  <line class="dep" x1="540" y1="160" x2="540" y2="208" marker-end="url(#seta)" />
+  <text class="estereo" x="588" y="188">«extend»</text>
+
+  <!-- UC01 «include» UC04 -->
+  <line class="dep" x1="628" y1="264" x2="716" y2="298" marker-end="url(#seta)" />
+  <text class="estereo" x="672" y="272">«include»</text>
+
+  <!-- UC02 «include» UC04 -->
+  <line class="dep" x1="628" y1="368" x2="718" y2="337" marker-end="url(#seta)" />
+  <text class="estereo" x="673" y="371">«include»</text>
+
+  <!-- UC05 «include» UC04 -->
+  <line class="dep" x1="626" y1="492" x2="768" y2="352" marker-end="url(#seta)" />
+  <text class="estereo" x="722" y="446">«include»</text>
+</svg>
