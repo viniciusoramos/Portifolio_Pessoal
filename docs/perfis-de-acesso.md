@@ -1,7 +1,7 @@
 # Perfis de Acesso — Levantamento de Requisitos e Casos de Uso
 
 > **Lab01 · Sprint 02 · Portfólio Profissional — Vinícius Oliveira Ramos**
-> Versão 1.1 · 02/09/2026 · Status: validado com o PO (decisões na seção 11) · Implementação: pendente, prevista para o Lab01S03
+> Versão 1.0 · 26/08/2026 · Status: validado com o PO (decisões na seção 11) · Implementação: pendente, prevista para o Lab01S03
 
 ---
 
@@ -51,7 +51,7 @@ Ao entrar no site, o visitante escolhe **quem ele é** em uma tela simples de se
 | ↳ Recrutador / Empresa | Profissional de RH, tech lead, empresa avaliando contratação | Experiência, habilidades, contato rápido |
 | ↳ Professor / Avaliador | Docente ou banca avaliando o trabalho acadêmico | Formação, projetos acadêmicos, código-fonte, evolução |
 | ↳ Desenvolvedor / Comunidade | Colegas, comunidade open source | Stack, repositórios, código |
-| Visitante geral | O próprio ator Visitante, sem especialização — quem não se identifica ou pula a seleção | Visão equilibrada |
+| ↳ Visitante geral | Quem não se identifica com os anteriores ou pula a seleção | Visão equilibrada |
 | **Proprietário** (Vinícius) | Dono do portfólio | Definir o que cada perfil vê em destaque (via código/dados) |
 
 ---
@@ -151,9 +151,9 @@ flowchart LR
 
   subgraph sistema["Portfólio — Perfis de Acesso"]
     direction TB
-    UC03["UC03 Trocar perfil"]
     UC01["UC01 Selecionar perfil de acesso"]
     UC02["UC02 Pular seleção"]
+    UC03["UC03 Trocar perfil"]
     UC04["UC04 Visualizar portfólio com destaques"]
     UC05["UC05 Acessar por link com perfil pré-definido"]
     UC06["UC06 Configurar destaques de um perfil"]
@@ -164,21 +164,16 @@ flowchart LR
   DEV -- "é um" --> VIS
 
   VIS --> UC01
+  VIS --> UC02
   VIS --> UC03
-  VIS --> UC04
   VIS --> UC05
   OWN --> UC06
 
-  UC03 -. "«include»" .-> UC01
-  UC02 -. "«extend»" .-> UC01
+  UC01 -. "«include»" .-> UC04
+  UC02 -. "«include»" .-> UC04
+  UC05 -. "«include»" .-> UC04
+  UC03 -. "«extend»" .-> UC01
 ```
-
-- **Generalização** ("é um"): Recrutador, Professor e Desenvolvedor são especializações do ator **Visitante** e herdam todas as suas associações. O *Visitante geral* é o próprio ator base, sem especialização.
-- **Associações**: o Visitante é ator dos quatro casos de uso que representam metas suas — UC01, UC03, UC04 e UC05. O **Proprietário** é ator secundário, associado apenas ao UC06.
-- **`«include»`** (UC03 → UC01): trocar de perfil **sempre** passa pela seleção, então UC03 inclui UC01 obrigatoriamente.
-- **`«extend»`** (UC02 → UC01): pular a seleção é comportamento **opcional e condicional**, inserido no ponto de extensão *"escolha do perfil"* de UC01. A seta aponta do caso que estende para o caso base.
-
-**Por que UC04 não tem `«include»`.** Selecionar um perfil não *inclui* visualizar o portfólio: são duas metas distintas do visitante, uma acontecendo depois da outra. Sequência temporal não é relacionamento de caso de uso em UML — expressa-se por pré-condição, e é assim que o UC04 a registra. `«include»` fica reservado a comportamento compartilhado invocado de dentro de outro caso de uso.
 
 ### 6.2 UC01 — Selecionar perfil de acesso
 
@@ -216,7 +211,6 @@ flowchart LR
 | **Objetivo** | Ver o portfólio sem se identificar |
 | **Pré-condições** | Tela de seleção exibida (UC01) |
 | **Pós-condições** | Perfil `geral` salvo; tela não reaparece nas próximas visitas |
-| **Relacionamento** | `«extend»` de UC01, no ponto de extensão *"escolha do perfil"* |
 | **Requisitos** | RF02, RF03 |
 
 **Fluxo principal**
@@ -237,7 +231,6 @@ flowchart LR
 | **Objetivo** | Mudar o perfil ativo a qualquer momento |
 | **Pré-condições** | Existe um perfil ativo (inclusive `geral`) |
 | **Pós-condições** | Novo perfil salvo e destaques atualizados sem recarregar a página |
-| **Relacionamento** | `«include»` UC01 — a troca sempre passa pela tela de seleção |
 | **Requisitos** | RF04, RNF02 |
 
 **Fluxo principal**
@@ -257,9 +250,8 @@ flowchart LR
 | --- | --- |
 | **Ator** | Visitante |
 | **Objetivo** | Navegar pelas seções vendo em evidência o que é relevante para seu perfil |
-| **Pré-condições** | Perfil ativo definido (por UC01, UC02 ou UC05) |
+| **Pré-condições** | Perfil ativo definido |
 | **Pós-condições** | — |
-| **Relacionamento** | Nenhum. É meta própria do Visitante; a definição do perfil é pré-condição, não inclusão |
 | **Requisitos** | RF05–RF11, RN01, RN02, RN05 |
 
 **Fluxo principal**
@@ -424,8 +416,7 @@ Desktop e mobile, seção 6 de [`docs/wireframes/wireframes.html`](wireframes/wi
 | 3 | Indicador no cabeçalho | **Texto:** "Vendo como: *Perfil*". |
 | 4 | Tags dos projetos | Confirmadas — ver tabela abaixo. |
 | 5 | Assunto sugerido no formulário de contato | **Novo campo "Assunto"** pré-preenchido conforme o perfil e editável pelo visitante; vira o assunto do e-mail. |
-| 6 | Revisão da modelagem UML (v1.1) | Corrigidos três relacionamentos: UC02 passou a `«extend»` de UC01 (era `«include»` para UC04); UC03 passou a `«include»` UC01 (era `«extend»`, com o sentido invertido); UC04 ganhou associação direta com o Visitante e perdeu os `«include»` que vinham de UC01, UC02 e UC05. |
-| 7 | Ordem dos blocos de "Sobre Mim" | O conteúdo tem **3 blocos** (formação; atuação e interesses; objetivos), não 4 — a ordem por perfil trabalha sobre esses três. |
+| 6 | Ordem dos blocos de "Sobre Mim" | O conteúdo tem **3 blocos** (formação; atuação e interesses; objetivos), não 4 — a ordem por perfil trabalha sobre esses três. |
 
 ### Tags por item de conteúdo
 
