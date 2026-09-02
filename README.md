@@ -2,9 +2,9 @@
 
 Website de portfólio profissional desenvolvido para a disciplina **Laboratório de Desenvolvimento de Software** — PUC Minas, Engenharia de Software, 2º semestre de 2026.
 
-> **Status:** Sprint 03 (Lab01S03) — publicado em nuvem.
+> **Status:** Sprint 03 (Lab01S03) — perfis de acesso implementados; republicação em andamento.
 >
-> 🌐 **Site publicado:** <https://portifolioviniciusramos.netlify.app>
+> 🌐 **Site publicado:** em migração de hospedagem — o link será atualizado aqui.
 
 ---
 
@@ -75,7 +75,7 @@ A seção 6 do arquivo de wireframes traz ainda a **tela de seleção de perfil*
 | Roteamento | **React Router 6** | Páginas separadas por rota, com layout compartilhado |
 | Ícones | **lucide-react** | Conjunto de ícones SVG leve e consistente |
 | Internacionalização | **React Context** | Alternância PT/EN sem biblioteca externa |
-| Hospedagem | **Netlify** | Deploy gratuito, contínuo a partir do GitHub, com redirecionamento de SPA |
+| Hospedagem | **Estática** | Deploy contínuo a partir do GitHub; configuração de SPA pronta para Netlify, Vercel e Cloudflare Pages |
 
 ---
 
@@ -244,7 +244,7 @@ Implementação prevista para o Lab01S03.
 
 ## Deploy
 
-O site está publicado na **Netlify**, em <https://portifolioviniciusramos.netlify.app>, com deploy contínuo a partir da branch `main` deste repositório.
+O site é estático: o build gera a pasta `dist/`, que pode ser servida por qualquer hospedagem de arquivos.
 
 | Configuração | Valor |
 | --- | --- |
@@ -252,11 +252,14 @@ O site está publicado na **Netlify**, em <https://portifolioviniciusramos.netli
 | Diretório publicado | `dist` |
 | Versão do Node | 20 |
 
-**Redirecionamento de SPA.** O roteamento é feito no cliente pelo React Router, então o servidor precisa devolver o `index.html` para qualquer caminho. Sem isso, abrir `/projetos` direto ou recarregar a página fora da raiz retorna 404. A regra fica em [`public/_redirects`](public/_redirects) e o Vite a copia para `dist/` no build:
+**Redirecionamento de SPA.** O roteamento é feito no cliente pelo React Router, então o servidor precisa devolver o `index.html` para qualquer caminho. Sem isso, abrir `/projetos` direto ou recarregar a página fora da raiz retorna 404. O repositório já traz a regra para as três plataformas mais comuns:
 
-```
-/*  /index.html  200
-```
+| Plataforma | Arquivo | Conteúdo |
+| --- | --- | --- |
+| Netlify · Cloudflare Pages | [`public/_redirects`](public/_redirects) | `/*  /index.html  200` |
+| Vercel | [`vercel.json`](vercel.json) | `rewrites` de `/(.*)` para `/index.html` |
+
+O Vite copia `public/_redirects` para `dist/` no build, então nada além de conectar o repositório é necessário.
 
 ---
 
@@ -285,7 +288,7 @@ Tema escuro minimalista, com foco em legibilidade e destaque para o conteúdo.
 
 - [x] **Lab01S01** — Repositório, wireframes, protótipo do front-end, navegação e layout principal
 - [x] **Lab01S02** — Sobre Mim em PT/EN, timeline com ordenação automática e filtro por tecnologia, experiências filtráveis por tipo, períodos formatados por idioma, formulário com validação completa e envio real de e-mail, responsividade revisada.
-- [ ] **Lab01S03** — Deploy em nuvem (feito, em <https://portifolioviniciusramos.netlify.app>), perfis de acesso (feito), ajustes visuais e README final
+- [ ] **Lab01S03** — Perfis de acesso (feito), deploy em nuvem (em migração), ajustes visuais e README final
 
 ---
 

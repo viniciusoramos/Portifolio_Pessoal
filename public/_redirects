@@ -1,3 +1,5 @@
-# React Router usa rotas no cliente. Sem esta regra o Netlify devolve 404 ao
+# React Router usa rotas no cliente. Sem esta regra o servidor devolve 404 ao
 # abrir /projetos direto ou ao recarregar a página fora da raiz.
+# Formato lido por Netlify e Cloudflare Pages. Na Vercel, a regra equivalente
+# está em vercel.json.
 /*  /index.html  200
