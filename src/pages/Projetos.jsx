@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { Github, ExternalLink, ImageOff } from 'lucide-react'
+import { Github, ExternalLink } from 'lucide-react'
 import { useLang } from '../context/LanguageContext'
 import { projetos } from '../data/projetos'
 import { ordenarPorInicio, formatarPeriodo } from '../utils/datas'
@@ -63,19 +63,6 @@ export default function Projetos() {
               </div>
 
               <article className="card overflow-hidden">
-                {/* sem imagem o bloco vira uma faixa curta, para não abrir um
-                    vazio do tamanho de um 16:9 no meio da timeline */}
-                {p.imagem ? (
-                  <div className="aspect-[16/9] w-full border-b border-line bg-elevated">
-                    <img src={p.imagem} alt={p.nome} loading="lazy" className="h-full w-full object-cover" />
-                  </div>
-                ) : (
-                  <div className="flex h-24 w-full flex-col items-center justify-center gap-1.5 border-b border-line bg-elevated px-4 text-center font-mono text-xs text-muted/50">
-                    <ImageOff size={18} />
-                    {t.projetos.preview}
-                  </div>
-                )}
-
                 <div className="p-5 sm:p-6">
                   <h2 className="text-xl font-semibold">{p.nome}</h2>
                   <p className="mt-2 text-muted">{p.descricao[lang]}</p>

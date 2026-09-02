@@ -1,4 +1,3 @@
-// ⚠️ Pendente: LinkedIn.
 export const contatos = [
   {
     id: 'email',
@@ -12,7 +11,12 @@ export const contatos = [
     valor: '+55 (37) 99863-8074',
     href: 'https://wa.me/5537998638074',
   },
-  { id: 'linkedin', label: 'LinkedIn', valor: '/in/seu-usuario', href: 'https://linkedin.com/in/seu-usuario' },
+  {
+    id: 'linkedin',
+    label: 'LinkedIn',
+    valor: '/in/vinicius-oliveira-12b336341',
+    href: 'https://www.linkedin.com/in/vinicius-oliveira-12b336341/',
+  },
   {
     id: 'github',
     label: 'GitHub',

@@ -28,7 +28,7 @@ Aplicação web de página única (SPA) que apresenta trajetória acadêmica e p
 | Rota | Seção | Conteúdo |
 | --- | --- | --- |
 | `/` | **Sobre Mim** | Apresentação em português e inglês, formação, área de atuação, interesses, objetivos e habilidades técnicas |
-| `/projetos` | **Projetos** | Linha do tempo do projeto mais antigo ao mais recente, com nome, descrição, tecnologias, link do repositório e imagem/GIF em execução |
+| `/projetos` | **Projetos** | Linha do tempo do projeto mais antigo ao mais recente, com nome, descrição, tecnologias e link do repositório |
 | `/experiencias` | **Experiências** | Experiências profissionais, estágios, freelas, projetos open source e eventos técnicos, com empresa, cargo, período e descrição |
 | `/contato` | **Contato** | Ícones clicáveis (e-mail, WhatsApp, LinkedIn, GitHub) e formulário de mensagem |
 
@@ -105,7 +105,7 @@ portfolio/
 │   └── wireframes/
 │       └── wireframes.html      # Wireframes de média fidelidade (desktop + mobile)
 ├── public/
-│   └── favicon.svg              # Ícone da aba (imagens/GIFs dos projetos vêm aqui)
+│   └── favicon.svg              # Ícone da aba
 ├── src/
 │   ├── components/
 │   │   ├── Filtros.jsx          # Barra de chips de filtro (Projetos e Experiências)
@@ -228,7 +228,7 @@ Tema escuro minimalista, com foco em legibilidade e destaque para o conteúdo.
 - [x] **Lab01S01** — Repositório, wireframes, protótipo do front-end, navegação e layout principal
 - [ ] **Lab01S02** — Timeline com ordenação automática e filtro por tecnologia, experiências filtráveis por tipo, períodos formatados por idioma, formulário com validação completa e responsividade revisada.
   Pendente: preencher os arquivos de `src/data/` com o conteúdo real e substituir o `mailto:` por envio automático de e-mail.
-- [ ] **Lab01S03** — Deploy em nuvem, imagens/GIFs dos projetos, ajustes visuais e README final
+- [ ] **Lab01S03** — Deploy em nuvem, ajustes visuais e README final
 
 ---
 

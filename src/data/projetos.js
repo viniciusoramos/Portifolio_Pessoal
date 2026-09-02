@@ -13,7 +13,6 @@
 //   tecnologias array de strings; alimenta os filtros da página
 //   github      URL do repositório, ou null quando o código não é público
 //   demo        URL do site publicado, ou null
-//   imagem      caminho em public/ (Sprint 03), ou null
 export const projetos = [
   {
     id: 'dropfleet',
@@ -27,7 +26,6 @@ export const projetos = [
     tecnologias: ['HTML', 'CSS', 'JavaScript', 'Swiper'],
     github: 'https://github.com/viniciusoramos/DropFleet',
     demo: null,
-    imagem: null,
   },
   {
     id: 'hotel-fes',
@@ -41,7 +39,6 @@ export const projetos = [
     tecnologias: ['C', 'Testes automatizados'],
     github: 'https://github.com/viniciusoramos/Hotel_Descanso_Fundamentos_Eng_Software',
     demo: null,
-    imagem: null,
   },
   {
     // ⚠️ PENDENTE:
@@ -62,7 +59,6 @@ export const projetos = [
     tecnologias: ['Python', 'Blender'],
     github: 'https://github.com/viniciusoramos/ADDON_RELATORIOS',
     demo: null,
-    imagem: null,
   },
   {
     id: 'hackathons-pm',
@@ -76,7 +72,6 @@ export const projetos = [
     tecnologias: ['Java', 'Maven', 'UML'],
     github: 'https://github.com/viniciusoramos/HackathonsPM',
     demo: null,
-    imagem: null,
   },
   {
     id: 'algoritmo-banqueiro',
@@ -90,7 +85,6 @@ export const projetos = [
     tecnologias: ['Java', 'Multithreading', 'Sistemas Operacionais'],
     github: 'https://github.com/viniciusoramos/Trabalho_Pr-tico_1_SO',
     demo: null,
-    imagem: null,
   },
   {
     id: 'sgom',
@@ -104,7 +98,6 @@ export const projetos = [
     tecnologias: ['UML', 'PlantUML', 'Documentação'],
     github: 'https://github.com/viniciusoramos/Trabalho-Final-Proj-Software',
     demo: null,
-    imagem: null,
   },
   {
     id: 'memoria-virtual',
@@ -118,7 +111,6 @@ export const projetos = [
     tecnologias: ['C', 'Make', 'Sistemas Operacionais'],
     github: 'https://github.com/viniciusoramos/TabralhoPratico2_SO',
     demo: null,
-    imagem: null,
   },
   {
     id: 'publicamed',
@@ -132,7 +124,6 @@ export const projetos = [
     tecnologias: ['React', 'Vite', 'Supabase', 'JavaScript', 'SQL'],
     github: 'https://github.com/viniciusoramos/PublicaMED_Sistema',
     demo: null,
-    imagem: null,
   },
   {
     id: 'portfolio',
@@ -146,6 +137,5 @@ export const projetos = [
     tecnologias: ['React', 'Vite', 'Tailwind CSS', 'React Router'],
     github: 'https://github.com/viniciusoramos/Portifolio_Pessoal',
     demo: null,
-    imagem: null,
   },
 ]
