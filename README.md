@@ -2,7 +2,9 @@
 
 Website de portfólio profissional desenvolvido para a disciplina **Laboratório de Desenvolvimento de Software** — PUC Minas, Engenharia de Software, 2º semestre de 2026.
 
-> **Status:** Sprint 02 (Lab01S02) — timeline dinâmica, filtros, formulário validado e responsividade.
+> **Status:** Sprint 03 (Lab01S03) — publicado em nuvem.
+>
+> 🌐 **Site publicado:** <https://golden-torte-859519.netlify.app>
 
 ---
 
@@ -15,6 +17,7 @@ Website de portfólio profissional desenvolvido para a disciplina **Laboratório
 - [Estrutura de diretórios](#estrutura-de-diretórios)
 - [Instalação e execução local](#instalação-e-execução-local)
 - [Formulário de contato](#formulário-de-contato)
+- [Deploy](#deploy)
 - [Documentação de requisitos](#documentação-de-requisitos)
 - [Identidade visual](#identidade-visual)
 - [Roteiro das sprints](#roteiro-das-sprints)
@@ -70,7 +73,7 @@ A seção 6 do arquivo de wireframes traz ainda a **tela de seleção de perfil*
 | Roteamento | **React Router 6** | Páginas separadas por rota, com layout compartilhado |
 | Ícones | **lucide-react** | Conjunto de ícones SVG leve e consistente |
 | Internacionalização | **React Context** | Alternância PT/EN sem biblioteca externa |
-| Hospedagem (Sprint 03) | **Vercel** | Deploy gratuito e integrado ao GitHub |
+| Hospedagem | **Netlify** | Deploy gratuito, contínuo a partir do GitHub, com redirecionamento de SPA |
 
 ---
 
@@ -105,6 +108,7 @@ portfolio/
 │   └── wireframes/
 │       └── wireframes.html      # Wireframes de média fidelidade (desktop + mobile)
 ├── public/
+│   ├── _redirects               # Regra de SPA do Netlify (todas as rotas → index.html)
 │   └── favicon.svg              # Ícone da aba
 ├── src/
 │   ├── components/
@@ -202,6 +206,24 @@ Implementação prevista para o Lab01S03.
 
 ---
 
+## Deploy
+
+O site está publicado na **Netlify**, em <https://golden-torte-859519.netlify.app>, com deploy contínuo a partir da branch `main` deste repositório.
+
+| Configuração | Valor |
+| --- | --- |
+| Comando de build | `npm run build` |
+| Diretório publicado | `dist` |
+| Versão do Node | 20 |
+
+**Redirecionamento de SPA.** O roteamento é feito no cliente pelo React Router, então o servidor precisa devolver o `index.html` para qualquer caminho. Sem isso, abrir `/projetos` direto ou recarregar a página fora da raiz retorna 404. A regra fica em [`public/_redirects`](public/_redirects) e o Vite a copia para `dist/` no build:
+
+```
+/*  /index.html  200
+```
+
+---
+
 ## Identidade visual
 
 Tema escuro minimalista, com foco em legibilidade e destaque para o conteúdo.
@@ -228,7 +250,7 @@ Tema escuro minimalista, com foco em legibilidade e destaque para o conteúdo.
 - [x] **Lab01S01** — Repositório, wireframes, protótipo do front-end, navegação e layout principal
 - [ ] **Lab01S02** — Timeline com ordenação automática e filtro por tecnologia, experiências filtráveis por tipo, períodos formatados por idioma, formulário com validação completa e responsividade revisada.
   Pendente: preencher os arquivos de `src/data/` com o conteúdo real e substituir o `mailto:` por envio automático de e-mail.
-- [ ] **Lab01S03** — Deploy em nuvem, ajustes visuais e README final
+- [ ] **Lab01S03** — Deploy em nuvem (feito, em <https://golden-torte-859519.netlify.app>), ajustes visuais e README final
 
 ---
 

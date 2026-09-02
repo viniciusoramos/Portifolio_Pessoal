@@ -14,10 +14,9 @@ export const experiencias = [
       en: 'Custom implants · 3D printing in titanium',
     },
     cargo: { pt: 'Estagiário', en: 'Intern' },
-    // ⚠️ PREENCHER: mês e ano de início e de fim, no formato 'AAAA-MM'.
-    // Use fim: null se o estágio ainda estiver em andamento.
-    inicio: null,
-    fim: null,
+    // 11/07/2025 a 15/08/2026 — a exibição é por mês, não por dia
+    inicio: '2025-07',
+    fim: '2026-08',
     tipo: 'estagio',
     descricao: {
       pt: 'Acompanhamento e otimização do fluxo de trabalho de projetos personalizados, com ênfase na automação de relatórios e na elaboração de documentos de apoio ao cirurgião. Atuação também na comparação de malhas e segmentações entre diferentes softwares e no suporte à movimentação, avaliação e análise de casos de deformidades dentoesqueléticas.',

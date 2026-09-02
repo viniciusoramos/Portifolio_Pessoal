@@ -41,16 +41,12 @@ export const projetos = [
     demo: null,
   },
   {
-    // ⚠️ PENDENTE:
-    //   inicio/fim  — mês e ano em que você desenvolveu o addon; sem isso o
-    //                 projeto cai no fim da timeline, sem período exibido
-    //   descricao   — rascunho escrito a partir do que você contou sobre a
-    //                 CPMH; confirme o que o addon de fato automatiza
-    //   github      — o repositório está privado (a API responde 404 para quem
-    //                 não está logado). Torne-o público para o link funcionar.
+    // ⚠️ PENDENTE: o repositório está privado — a API do GitHub responde 404
+    // para quem não está logado, então o link quebra para o avaliador.
+    // fim: null porque o addon segue em desenvolvimento.
     id: 'addon-blender',
     nome: 'Addon de Relatórios para Blender',
-    inicio: null,
+    inicio: '2026-05',
     fim: null,
     descricao: {
       pt: 'Addon desenvolvido para o Blender que automatiza a geração de relatórios dos casos processados, reduzindo o trabalho manual de montagem dos documentos de apoio ao cirurgião.',
