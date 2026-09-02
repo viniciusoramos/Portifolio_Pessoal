@@ -2,9 +2,9 @@
 
 Website de portfólio profissional desenvolvido para a disciplina **Laboratório de Desenvolvimento de Software** — PUC Minas, Engenharia de Software, 2º semestre de 2026.
 
-> **Status:** Sprint 03 (Lab01S03) — perfis de acesso implementados; republicação em andamento.
+> **Status:** Sprint 03 (Lab01S03) — perfis de acesso implementados e site publicado.
 >
-> 🌐 **Site publicado:** em migração de hospedagem — o link será atualizado aqui.
+> 🌐 **Site publicado:** <https://viniciusramos.netlify.app>
 
 ---
 
@@ -75,7 +75,7 @@ A seção 6 do arquivo de wireframes traz ainda a **tela de seleção de perfil*
 | Roteamento | **React Router 6** | Páginas separadas por rota, com layout compartilhado |
 | Ícones | **lucide-react** | Conjunto de ícones SVG leve e consistente |
 | Internacionalização | **React Context** | Alternância PT/EN sem biblioteca externa |
-| Hospedagem | **Estática** | Deploy contínuo a partir do GitHub; configuração de SPA pronta para Netlify, Vercel e Cloudflare Pages |
+| Hospedagem | **Netlify** | Deploy contínuo a partir do GitHub; configuração de SPA pronta também para Vercel e Cloudflare Pages |
 
 ---
 
@@ -244,7 +244,7 @@ Implementação prevista para o Lab01S03.
 
 ## Deploy
 
-O site é estático: o build gera a pasta `dist/`, que pode ser servida por qualquer hospedagem de arquivos.
+O site está publicado na **Netlify**, em <https://viniciusramos.netlify.app>, com deploy contínuo a partir da branch `main`. O build gera a pasta `dist/`, que pode ser servida por qualquer hospedagem de arquivos estáticos.
 
 | Configuração | Valor |
 | --- | --- |
@@ -288,7 +288,7 @@ Tema escuro minimalista, com foco em legibilidade e destaque para o conteúdo.
 
 - [x] **Lab01S01** — Repositório, wireframes, protótipo do front-end, navegação e layout principal
 - [x] **Lab01S02** — Sobre Mim em PT/EN, timeline com ordenação automática e filtro por tecnologia, experiências filtráveis por tipo, períodos formatados por idioma, formulário com validação completa e envio real de e-mail, responsividade revisada.
-- [ ] **Lab01S03** — Perfis de acesso (feito), deploy em nuvem (em migração), ajustes visuais e README final
+- [ ] **Lab01S03** — Perfis de acesso (feito), deploy em nuvem (feito, em <https://viniciusramos.netlify.app>), ajustes visuais e README final
 
 ---
 
