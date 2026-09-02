@@ -15,6 +15,7 @@ Website de portfólio profissional desenvolvido para a disciplina **Laboratório
 - [Estrutura de diretórios](#estrutura-de-diretórios)
 - [Instalação e execução local](#instalação-e-execução-local)
 - [Formulário de contato](#formulário-de-contato)
+- [Documentação de requisitos](#documentação-de-requisitos)
 - [Identidade visual](#identidade-visual)
 - [Roteiro das sprints](#roteiro-das-sprints)
 
@@ -52,6 +53,10 @@ Os wireframes de média fidelidade cobrem as quatro páginas em versão **deskto
 **Mapa de navegação**
 
 ![Mapa de navegação](docs/wireframes/05-mapa.png)
+
+A seção 6 do arquivo de wireframes traz ainda a **tela de seleção de perfil**, especificada em [Documentação de requisitos](#documentação-de-requisitos).
+
+![Wireframe da seleção de perfil](docs/wireframes/06-perfis.png)
 
 ---
 
@@ -182,6 +187,18 @@ A aplicação ficará disponível em `http://localhost:5173`.
 O campo só passa a acusar erro depois do primeiro `blur`, para não reclamar já na primeira letra digitada. No envio, todos são revalidados, o foco vai para o primeiro campo inválido e cada erro é anunciado por leitor de tela (`aria-invalid`, `aria-describedby` e `role="alert"`).
 
 **Envio.** `src/servicos/envio.js` é o único ponto que conhece o transporte. Hoje monta um link `mailto:` e abre o aplicativo de e-mail do visitante com assunto e corpo preenchidos — funciona em hospedagem estática, sem back-end nem chave de API. Para trocar por envio automático (Web3Forms, EmailJS ou uma função serverless na Vercel), basta reescrever o corpo de `enviarMensagem` mantendo a assinatura e o retorno `{ ok }`; nenhuma página muda.
+
+---
+
+## Documentação de requisitos
+
+**[Perfis de Acesso — Levantamento de Requisitos e Casos de Uso](docs/perfis-de-acesso.md)**
+
+Documento de análise da funcionalidade de perfis de acesso: ao entrar no site, o visitante informa se é recrutador, professor, desenvolvedor ou visitante geral, e o portfólio passa a destacar o que interessa a cada um — sem esconder nada e sem login.
+
+Cobre visão geral e escopo, os 4 perfis e a matriz de destaques por seção, 14 requisitos funcionais e 8 não funcionais, 5 regras de negócio, 6 casos de uso com fluxos alternativos e exceções, matriz de rastreabilidade, critérios de aceite, modelo de dados proposto e o wireframe da tela de seleção.
+
+Implementação prevista para o Lab01S03.
 
 ---
 

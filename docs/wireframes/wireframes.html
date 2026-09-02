@@ -448,6 +448,101 @@
   Ao mudar de rota: o scroll volta ao topo automaticamente.
 </pre>
   </div>
+
+  <!-- 6. SELECAO DE PERFIL -->
+  <h2>6. Seleção de perfil <span style="font-weight:400;color:var(--note)">— rota <code>/perfil</code></span></h2>
+  <p class="h2sub">Exibida antes do site na 1ª visita e ao acionar "Trocar perfil" no cabeçalho. Lab01S03.</p>
+  <div class="row">
+    <div class="desktop">
+      <p class="caption">Desktop</p>
+      <div class="frame">
+        <div class="bar">
+          <div class="logo"><div class="sq"></div> Nome Sobrenome</div>
+          <div class="nav"><span class="pill">PT / EN</span></div>
+        </div>
+        <div class="body" style="text-align:center">
+          <div class="gap"></div>
+          <div class="t h2" style="width:56%;margin:0 auto"></div>
+          <div class="gap-s"></div>
+          <div class="t w70" style="margin:0 auto"></div>
+          <div class="t w45" style="margin:6px auto 0"></div>
+          <div class="gap"></div>
+          <div class="grid2b" style="text-align:left">
+            <div class="box" style="padding:14px">
+              <div class="exp-head"><div class="sq"></div></div>
+              <div class="gap-s"></div>
+              <div class="t lbl" style="width:52%"></div>
+              <div class="gap-s"></div>
+              <div class="t w90"></div>
+              <div class="t w70" style="margin-top:6px"></div>
+            </div>
+            <div class="box" style="padding:14px">
+              <div class="exp-head"><div class="sq"></div></div>
+              <div class="gap-s"></div>
+              <div class="t lbl" style="width:58%"></div>
+              <div class="gap-s"></div>
+              <div class="t w90"></div>
+              <div class="t w60" style="margin-top:6px"></div>
+            </div>
+            <div class="box" style="padding:14px">
+              <div class="exp-head"><div class="sq"></div></div>
+              <div class="gap-s"></div>
+              <div class="t lbl" style="width:62%"></div>
+              <div class="gap-s"></div>
+              <div class="t w80"></div>
+              <div class="t w60" style="margin-top:6px"></div>
+            </div>
+            <div class="box" style="padding:14px;border-color:var(--accent);border-width:2px">
+              <div class="exp-head"><div class="sq"></div></div>
+              <div class="gap-s"></div>
+              <div class="t lbl" style="width:40%"></div>
+              <div class="gap-s"></div>
+              <div class="t w70"></div>
+            </div>
+          </div>
+          <div class="gap"></div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span class="tag" style="border:0;background:transparent;text-decoration:underline">Continuar sem escolher</span>
+            <span class="btn">Confirmar</span>
+          </div>
+          <p class="anno" style="text-align:center">
+            Sua escolha fica salva apenas neste navegador · <b>Esc</b> = continuar sem escolher ·
+            <b>?perfil=recrutador</b> pré-seleciona
+          </p>
+        </div>
+        <div class="foot"><span>© 2026 Nome — Todos os direitos reservados</span></div>
+      </div>
+      <p class="anno"><b>Interações:</b> os cartões são botões com <b>aria-pressed</b>; Tab percorre, Enter
+      confirma, Esc pula. O cartão marcado recebe a cor de acento.</p>
+    </div>
+
+    <div class="mobile">
+      <p class="caption">Mobile</p>
+      <div class="frame">
+        <div class="bar">
+          <div class="logo"><div class="sq"></div></div>
+          <div class="nav"><span class="pill">PT / EN</span></div>
+        </div>
+        <div class="body">
+          <div class="t h2" style="width:80%"></div>
+          <div class="gap-s"></div>
+          <div class="t w90"></div>
+          <div class="gap"></div>
+          <div class="stack">
+            <div class="box" style="padding:11px"><div class="t lbl" style="width:60%"></div><div class="t w90" style="margin-top:7px"></div></div>
+            <div class="box" style="padding:11px"><div class="t lbl" style="width:66%"></div><div class="t w80" style="margin-top:7px"></div></div>
+            <div class="box" style="padding:11px"><div class="t lbl" style="width:70%"></div><div class="t w80" style="margin-top:7px"></div></div>
+            <div class="box" style="padding:11px;border-color:var(--accent);border-width:2px"><div class="t lbl" style="width:44%"></div><div class="t w70" style="margin-top:7px"></div></div>
+          </div>
+          <div class="gap"></div>
+          <div class="btn" style="display:block;text-align:center">Confirmar</div>
+          <div class="gap-s"></div>
+          <div class="btn ghost" style="display:block;text-align:center">Continuar sem escolher</div>
+        </div>
+      </div>
+      <p class="anno"><b>&lt; 768px:</b> os cartões empilham em coluna única e os botões ocupam a largura total.</p>
+    </div>
+  </div>
 </div>
 </body>
 </html>
