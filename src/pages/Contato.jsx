@@ -8,7 +8,7 @@ import SectionHeader from '../components/SectionHeader'
 
 const icones = { email: Mail, whatsapp: MessageCircle, linkedin: Linkedin, github: Github }
 
-const VAZIO = { nome: '', email: '', mensagem: '' }
+const VAZIO = { nome: '', email: '', mensagem: '', armadilha: '' }
 
 export default function Contato() {
   const { t } = useLang()
@@ -25,9 +25,6 @@ export default function Contato() {
   const refEmail = useRef(null)
   const refMensagem = useRef(null)
   const referencias = { nome: refNome, email: refEmail, mensagem: refMensagem }
-
-  const canalEmail = contatos.find((c) => c.id === 'email')
-  const destino = canalEmail ? canalEmail.valor : null
 
   const aoMudar = (campo) => (evento) => {
     const valor = evento.target.value
@@ -60,7 +57,7 @@ export default function Contato() {
     }
 
     setEnviando(true)
-    const resultado = await enviarMensagem(valores, { destino })
+    const resultado = await enviarMensagem(valores)
     setEnviando(false)
 
     if (resultado.ok) {
@@ -107,6 +104,18 @@ export default function Contato() {
         {/* Formulario */}
         <form onSubmit={aoEnviar} noValidate className="card animate-fadeUp p-6">
           <h2 className="mb-5 text-lg font-semibold">{f.titulo}</h2>
+
+          {/* campo-armadilha contra robôs: invisível e fora da ordem de foco */}
+          <input
+            type="text"
+            name="armadilha"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            value={valores.armadilha}
+            onChange={aoMudar('armadilha')}
+            className="absolute left-[-9999px] h-0 w-0 opacity-0"
+          />
 
           <div className="space-y-4">
             <div>

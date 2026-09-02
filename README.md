@@ -4,7 +4,7 @@ Website de portfólio profissional desenvolvido para a disciplina **Laboratório
 
 > **Status:** Sprint 03 (Lab01S03) — publicado em nuvem.
 >
-> 🌐 **Site publicado:** <https://golden-torte-859519.netlify.app>
+> 🌐 **Site publicado:** <https://portifolioviniciusramos.netlify.app>
 
 ---
 
@@ -33,7 +33,7 @@ Aplicação web de página única (SPA) que apresenta trajetória acadêmica e p
 | `/` | **Sobre Mim** | Apresentação em português e inglês, formação, área de atuação, interesses, objetivos e habilidades técnicas |
 | `/projetos` | **Projetos** | Linha do tempo do projeto mais antigo ao mais recente, com nome, descrição, tecnologias e link do repositório |
 | `/experiencias` | **Experiências** | Experiências profissionais, estágios, freelas, projetos open source e eventos técnicos, com empresa, cargo, período e descrição |
-| `/contato` | **Contato** | Ícones clicáveis (e-mail, WhatsApp, LinkedIn, GitHub) e formulário de mensagem |
+| `/contato` | **Contato** | Ícones clicáveis (e-mail, WhatsApp, LinkedIn, GitHub) e formulário com envio real de e-mail |
 
 Todo o conteúdo textual alterna entre **português e inglês** por meio de um botão no cabeçalho, sem recarregar a página.
 
@@ -190,7 +190,15 @@ A aplicação ficará disponível em `http://localhost:5173`.
 
 O campo só passa a acusar erro depois do primeiro `blur`, para não reclamar já na primeira letra digitada. No envio, todos são revalidados, o foco vai para o primeiro campo inválido e cada erro é anunciado por leitor de tela (`aria-invalid`, `aria-describedby` e `role="alert"`).
 
-**Envio.** `src/servicos/envio.js` é o único ponto que conhece o transporte. Hoje monta um link `mailto:` e abre o aplicativo de e-mail do visitante com assunto e corpo preenchidos — funciona em hospedagem estática, sem back-end nem chave de API. Para trocar por envio automático (Web3Forms, EmailJS ou uma função serverless na Vercel), basta reescrever o corpo de `enviarMensagem` mantendo a assinatura e o retorno `{ ok }`; nenhuma página muda.
+**Envio.** Feito pelo **Web3Forms**: a mensagem sai do navegador do visitante direto para a API deles, que encaminha por e-mail. Não há back-end nem servidor próprio, o que mantém a hospedagem estática.
+
+`src/servicos/envio.js` é o único ponto que conhece o transporte — trocar de serviço é reescrever essa função mantendo a assinatura e o retorno `{ ok }`, sem tocar em nenhuma página.
+
+A *access key* é pública por definição: o Web3Forms a expõe no HTML de qualquer formulário e ela apenas identifica o destinatário. Por isso fica versionada. Para sobrescrevê-la sem alterar o código, defina `VITE_WEB3FORMS_KEY` nas variáveis de ambiente do Netlify.
+
+**Antispam.** O formulário tem um campo-armadilha invisível e fora da ordem de foco; se vier preenchido, a mensagem é descartada silenciosamente, porque só um robô o preencheria.
+
+> **Em desenvolvimento local o envio não funciona.** A conta do Web3Forms está restrita ao domínio publicado, então uma requisição vinda de `localhost` volta com 403 e é bloqueada por CORS. A interface trata isso normalmente, exibindo a mensagem de erro. Para testar o envio de verdade, use o site publicado.
 
 ---
 
@@ -208,7 +216,7 @@ Implementação prevista para o Lab01S03.
 
 ## Deploy
 
-O site está publicado na **Netlify**, em <https://golden-torte-859519.netlify.app>, com deploy contínuo a partir da branch `main` deste repositório.
+O site está publicado na **Netlify**, em <https://portifolioviniciusramos.netlify.app>, com deploy contínuo a partir da branch `main` deste repositório.
 
 | Configuração | Valor |
 | --- | --- |
@@ -248,9 +256,8 @@ Tema escuro minimalista, com foco em legibilidade e destaque para o conteúdo.
 ## Roteiro das sprints
 
 - [x] **Lab01S01** — Repositório, wireframes, protótipo do front-end, navegação e layout principal
-- [ ] **Lab01S02** — Timeline com ordenação automática e filtro por tecnologia, experiências filtráveis por tipo, períodos formatados por idioma, formulário com validação completa e responsividade revisada.
-  Pendente: preencher os arquivos de `src/data/` com o conteúdo real e substituir o `mailto:` por envio automático de e-mail.
-- [ ] **Lab01S03** — Deploy em nuvem (feito, em <https://golden-torte-859519.netlify.app>), ajustes visuais e README final
+- [x] **Lab01S02** — Sobre Mim em PT/EN, timeline com ordenação automática e filtro por tecnologia, experiências filtráveis por tipo, períodos formatados por idioma, formulário com validação completa e envio real de e-mail, responsividade revisada.
+- [ ] **Lab01S03** — Deploy em nuvem (feito, em <https://portifolioviniciusramos.netlify.app>), ajustes visuais e README final
 
 ---
 
